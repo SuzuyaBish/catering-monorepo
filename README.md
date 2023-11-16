@@ -42,7 +42,6 @@ This is the todo list as of November 16, 2023.
 
 ### List for Peter Thompson
 
-- [ ] Footer for web
 - [ ] Web mobile responsiveness
 - [ ] Blog list page web
 - [ ] Blog list page mobile
