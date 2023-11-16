@@ -16,6 +16,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        quicksand: ['var(--font-quicksand)'],
+        montserrat: ['var(--font-montserrat)'],
+      },
       colors: {
         blueColor: "#1b222d",
         orangeColor: "#f26754",

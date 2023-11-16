@@ -1,7 +1,19 @@
+import CTA from "@/components/landing/CTA"
+import ContactSection from "@/components/landing/ContactSection"
+import LandingHero from "@/components/landing/LandingHero"
+import OurKitchen from "@/components/landing/OurKitchen"
+import TestimonialsSection from "@/components/landing/TestimonialsSection"
+import TrustSection from "@/components/landing/TrustSection"
+
 export default function Home() {
   return (
-    <div className="bg-mutedColor min-h-screen">
-      <div></div>
-    </div>
+    <>
+      <LandingHero />
+      <TrustSection />
+      <OurKitchen />
+      <CTA />
+      <TestimonialsSection />
+      <ContactSection />
+    </>
   )
 }
