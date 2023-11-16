@@ -28,7 +28,7 @@ This is the todo list as of November 16, 2023.
 ### List for Jarrod Sloan
 
 - [ ] Create and setup database
-- [ ] Web landing page
+- [x] Web landing page
 - [ ] Mobile Landing page
 - [ ] Contact us logic (with Resend) web
 - [ ] Contact us logic (with Resend) mobile
