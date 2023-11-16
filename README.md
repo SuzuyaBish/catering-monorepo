@@ -1,5 +1,7 @@
 # XBCAD WIL PROJECT
 
+**!!!Please remember to pull the code before you make changes!!!**
+
 This mono repo contains the source code for both the web and mobile versions of the catering app for the XBCAD WIL project.
 
 ## Contributors
