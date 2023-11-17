@@ -82,8 +82,8 @@ export default function AboutPage() {
   return (
     <div className="bg-white">
       <main className="relative isolate">
-        <div className="px-6 pt-14 lg:px-8">
-          <div className="mx-auto max-w-2xl pt-24 text-center sm:pt-40">
+        <div className="px-6 pt-16 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-orangeColor font-montserrat text-4xl font-bold tracking-tight sm:text-6xl">
               We love creators
             </h2>

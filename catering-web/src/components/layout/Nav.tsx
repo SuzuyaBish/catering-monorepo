@@ -17,7 +17,7 @@ const navigation = [
 export default function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
-    <header className="bg-blueColor absolute inset-x-0 top-0 z-50">
+    <header className="bg-blueColor sticky inset-x-0 top-0 z-50 backdrop-blur">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
