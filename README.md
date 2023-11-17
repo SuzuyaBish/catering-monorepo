@@ -31,7 +31,9 @@ This is the todo list as of November 16, 2023.
 - [x] Web landing page
 - [ ] Mobile Landing page
 - [x] Contact us page web
-- [ ] Contact us page mobile
+- [x] Contact us page mobile
+- [x] Testimony page web
+- [ ] Testimony page mobile
 - [ ] Contact us logic (with Resend) web
 - [ ] Contact us logic (with Resend) mobile
 - [ ] Blog content page web
