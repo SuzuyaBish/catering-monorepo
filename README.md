@@ -29,18 +29,15 @@ This is the todo list as of November 16, 2023.
 
 - [ ] Create and setup database
 - [x] Web landing page
-- [ ] Mobile Landing page
 - [x] Contact us page web
 - [x] Contact us page mobile
 - [x] Testimony page web
-- [ ] Testimony page mobile
 - [ ] Contact us logic (with Resend) web
 - [ ] Contact us logic (with Resend) mobile
 - [ ] Blog content page web
 - [ ] Blog content page mobile
 - [ ] Mobile layout shell
 - [ ] Recipe content page web
-- [ ] Recipe content page mobile
 - [x] About page web
 - [ ] About page mobile
 
@@ -55,6 +52,9 @@ This is the todo list as of November 16, 2023.
 - [ ] Recipe list page mobile
 - [ ] Legal pages for web (Terms & Conditions + Privacy Policy)
 - [ ] Legal pages for mobile (Terms & Conditions + Privacy Policy)
+- [ ] Mobile Landing page
+- [ ] Testimony page mobile
+- [ ] Recipe content page mobile
 
 ## Requirements
 

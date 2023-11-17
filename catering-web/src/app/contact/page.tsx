@@ -1,17 +1,5 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+import OrangeButton from "@/components/general/SignInButton"
+
 export default function Example() {
   return (
     <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -37,10 +25,17 @@ export default function Example() {
             strokeWidth={0}
           />
         </svg>
-        <rect width="100%" height="100%" strokeWidth={0} fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
+        <rect
+          width="100%"
+          height="100%"
+          strokeWidth={0}
+          fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)"
+        />
       </svg>
       <div className="mx-auto max-w-xl lg:max-w-4xl">
-        <h2 className="text-4xl font-bold tracking-tight text-gray-900">Let’s talk about your project</h2>
+        <h2 className="text-4xl font-bold tracking-tight text-gray-900">
+          Let’s talk about your project
+        </h2>
         <p className="mt-2 text-lg leading-8 text-gray-600">
           We help companies and individuals build out their brand guidelines.
         </p>
@@ -48,7 +43,10 @@ export default function Example() {
           <form action="#" method="POST" className="lg:flex-auto">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div>
-                <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
+                <label
+                  htmlFor="first-name"
+                  className="block text-sm font-semibold leading-6 text-gray-900"
+                >
                   First name
                 </label>
                 <div className="mt-2.5">
@@ -62,7 +60,10 @@ export default function Example() {
                 </div>
               </div>
               <div>
-                <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
+                <label
+                  htmlFor="last-name"
+                  className="block text-sm font-semibold leading-6 text-gray-900"
+                >
                   Last name
                 </label>
                 <div className="mt-2.5">
@@ -76,7 +77,10 @@ export default function Example() {
                 </div>
               </div>
               <div>
-                <label htmlFor="budget" className="block text-sm font-semibold leading-6 text-gray-900">
+                <label
+                  htmlFor="budget"
+                  className="block text-sm font-semibold leading-6 text-gray-900"
+                >
                   Budget
                 </label>
                 <div className="mt-2.5">
@@ -89,7 +93,10 @@ export default function Example() {
                 </div>
               </div>
               <div>
-                <label htmlFor="website" className="block text-sm font-semibold leading-6 text-gray-900">
+                <label
+                  htmlFor="website"
+                  className="block text-sm font-semibold leading-6 text-gray-900"
+                >
                   Website
                 </label>
                 <div className="mt-2.5">
@@ -102,7 +109,10 @@ export default function Example() {
                 </div>
               </div>
               <div className="sm:col-span-2">
-                <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold leading-6 text-gray-900"
+                >
                   Message
                 </label>
                 <div className="mt-2.5">
@@ -111,21 +121,16 @@ export default function Example() {
                     name="message"
                     rows={4}
                     className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    defaultValue={''}
+                    defaultValue={""}
                   />
                 </div>
               </div>
             </div>
             <div className="mt-10">
-              <button
-                type="submit"
-                className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Let’s talk
-              </button>
+              <OrangeButton size="lg" text="Let's Talk" />
             </div>
             <p className="mt-4 text-sm leading-6 text-gray-500">
-              By submitting this form, I agree to the{' '}
+              By submitting this form, I agree to the{" "}
               <a href="#" className="font-semibold text-indigo-600">
                 privacy&nbsp;policy
               </a>
@@ -133,12 +138,17 @@ export default function Example() {
             </p>
           </form>
           <div className="lg:mt-6 lg:w-80 lg:flex-none">
-            <img className="h-12 w-auto" src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg" alt="" />
+            <img
+              className="h-12 w-auto"
+              src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg"
+              alt=""
+            />
             <figure className="mt-10">
               <blockquote className="text-lg font-semibold leading-8 text-gray-900">
                 <p>
-                  “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias
-                  molestiae. Numquam corrupti in laborum sed rerum et corporis.”
+                  “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+                  expedita voluptas culpa sapiente alias molestiae. Numquam
+                  corrupti in laborum sed rerum et corporis.”
                 </p>
               </blockquote>
               <figcaption className="mt-10 flex gap-x-6">
@@ -148,8 +158,12 @@ export default function Example() {
                   className="h-12 w-12 flex-none rounded-full bg-gray-50"
                 />
                 <div>
-                  <div className="text-base font-semibold text-gray-900">Brenna Goyette</div>
-                  <div className="text-sm leading-6 text-gray-600">CEO of Workcation</div>
+                  <div className="text-base font-semibold text-gray-900">
+                    Brenna Goyette
+                  </div>
+                  <div className="text-sm leading-6 text-gray-600">
+                    CEO of Workcation
+                  </div>
                 </div>
               </figcaption>
             </figure>
