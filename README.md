@@ -30,6 +30,8 @@ This is the todo list as of November 16, 2023.
 - [ ] Create and setup database
 - [x] Web landing page
 - [ ] Mobile Landing page
+- [x] Contact us page web
+- [ ] Contact us page mobile
 - [ ] Contact us logic (with Resend) web
 - [ ] Contact us logic (with Resend) mobile
 - [ ] Blog content page web
