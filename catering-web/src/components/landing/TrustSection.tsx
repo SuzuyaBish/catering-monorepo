@@ -1,12 +1,25 @@
+import { FC } from "react"
+
+import { cn } from "@/lib/utils"
+
 const stats = [
   { id: 1, name: "Food Items", value: "1000+" },
   { id: 2, name: "Satisfied Customers", value: "100+" },
   { id: 3, name: "Awards", value: "10" },
 ]
 
-export default function TrustSection() {
+interface TrustSectionProps {
+  inLanding?: boolean
+}
+
+const TrustSection: FC<TrustSectionProps> = ({ inLanding = true }) => {
   return (
-    <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div
+      className={cn(
+        "mx-auto max-w-7xl px-6 lg:px-8",
+        inLanding ? "py-20" : "mt-16 sm:mt-20 lg:mt-28"
+      )}
+    >
       <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
         <h2 className="text-orangeColor text-base font-semibold leading-8">
           Our track record
@@ -36,3 +49,5 @@ export default function TrustSection() {
     </div>
   )
 }
+
+export default TrustSection

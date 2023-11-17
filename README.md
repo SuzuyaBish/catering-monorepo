@@ -37,6 +37,8 @@ This is the todo list as of November 16, 2023.
 - [ ] Mobile layout shell
 - [ ] Recipe content page web
 - [ ] Recipe content page mobile
+- [x] About page web
+- [ ] About page mobile
 
 ---
 
