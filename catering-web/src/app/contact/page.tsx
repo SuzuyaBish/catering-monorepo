@@ -33,7 +33,7 @@ export default function Example() {
         />
       </svg>
       <div className="mx-auto max-w-xl lg:max-w-4xl">
-        <h2 className="text-4xl font-bold tracking-tight text-gray-900">
+        <h2 className="font-montserrat text-4xl font-bold tracking-tight text-gray-900">
           Let’s talk about your project
         </h2>
         <p className="mt-2 text-lg leading-8 text-gray-600">
