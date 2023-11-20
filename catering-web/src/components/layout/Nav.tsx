@@ -10,6 +10,7 @@ import OrangeButton from "../general/SignInButton"
 const navigation = [
   { name: "About", href: "/about" },
   { name: "Recipes", href: "/recipes" },
+  { name: "Blogs", href: "/blogs" },
   { name: "Contact", href: "/contact" },
   { name: "Testimony", href: "/testimony" },
 ]
