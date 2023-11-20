@@ -34,19 +34,19 @@ This is the todo list as of November 16, 2023.
 - [x] Testimony page web
 - [ ] Contact us logic (with Resend) web
 - [ ] Contact us logic (with Resend) mobile
-- [ ] Blog content page web
+- [x] Blog content page web
 - [ ] Blog content page mobile
 - [ ] Mobile layout shell
 - [ ] Recipe content page web
 - [x] About page web
 - [ ] About page mobile
+- [x] Blog list page web
 
 ---
 
 ### List for Peter Thompson
 
 - [ ] Web mobile responsiveness
-- [ ] Blog list page web
 - [ ] Blog list page mobile
 - [ ] Recipe list page web
 - [ ] Recipe list page mobile
