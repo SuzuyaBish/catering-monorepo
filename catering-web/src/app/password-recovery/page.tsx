@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { toast } from "sonner"
 
@@ -11,13 +9,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
 
-export default function LoginPage() {
-  const router = useRouter()
+export default function PasswordRecoveryPage() {
   const supabase = createClientComponentClient()
 
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -25,9 +21,8 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: "http://localhost:3000/auth/callback?next=/password-recovery/reset-password",
       })
 
       if (error) {
@@ -35,11 +30,9 @@ export default function LoginPage() {
         setLoading(false)
       } else {
         setLoading(false)
-        toast.success("Signed in successfully", {
-          description: "We will redirect you shortly.",
+        toast.success("Reset request sent", {
+          description: "Please check your email for a recovery link",
         })
-
-        router.replace("/account")
       }
     } catch (error) {
       setLoading(false)
@@ -59,7 +52,7 @@ export default function LoginPage() {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Password Recovery
           </h2>
         </div>
 
@@ -87,37 +80,6 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
-                <Label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Password
-                </Label>
-                <div className="text-sm">
-                  <Link
-                    href="/password-recovery"
-                    className="text-orangeColor hover:text-orangeColor/80 font-semibold"
-                  >
-                    Forgot password?
-                  </Link>
-                </div>
-              </div>
-              <div className="mt-2">
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  disabled={loading}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div>
               <Button
                 type="submit"
                 className="bg-orangeColor hover:bg-orangeColor/80 w-full"
@@ -126,20 +88,10 @@ export default function LoginPage() {
                 {loading && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Sign in
+                Send Password Recovery
               </Button>
             </div>
           </form>
-
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{" "}
-            <Link
-              href="/signup"
-              className="text-orangeColor hover:text-orangeColor/80 font-semibold leading-6"
-            >
-              Sign up now
-            </Link>
-          </p>
         </div>
       </div>
     </div>

@@ -10,6 +10,9 @@ export async function GET(req: NextRequest) {
 
   if (code) {
     await supabase.auth.exchangeCodeForSession(code)
+    const next = searchParams.get("next")
+
+    return NextResponse.redirect(new URL(next || "/", req.url))
   }
 
   return NextResponse.redirect(new URL("/", req.url))

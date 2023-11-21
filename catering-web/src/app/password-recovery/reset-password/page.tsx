@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { toast } from "sonner"
@@ -11,22 +10,28 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
 
-export default function LoginPage() {
-  const router = useRouter()
+export default function ResetPasswordPage() {
   const supabase = createClientComponentClient()
+  const router = useRouter()
 
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [passwordConfirmation, setPasswordConfirmation] = useState("")
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     setLoading(true)
 
+    if (password !== passwordConfirmation) {
+      toast.error("Passwords do not match")
+      setLoading(false)
+      return
+    }
+
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: email,
+      const { data, error } = await supabase.auth.updateUser({
         password: password,
       })
 
@@ -35,10 +40,7 @@ export default function LoginPage() {
         setLoading(false)
       } else {
         setLoading(false)
-        toast.success("Signed in successfully", {
-          description: "We will redirect you shortly.",
-        })
-
+        toast.success("Password updated successfully")
         router.replace("/account")
       }
     } catch (error) {
@@ -59,7 +61,7 @@ export default function LoginPage() {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Reset Password
           </h2>
         </div>
 
@@ -94,14 +96,6 @@ export default function LoginPage() {
                 >
                   Password
                 </Label>
-                <div className="text-sm">
-                  <Link
-                    href="/password-recovery"
-                    className="text-orangeColor hover:text-orangeColor/80 font-semibold"
-                  >
-                    Forgot password?
-                  </Link>
-                </div>
               </div>
               <div className="mt-2">
                 <Input
@@ -116,6 +110,28 @@ export default function LoginPage() {
                 />
               </div>
             </div>
+            <div>
+              <div className="flex items-center justify-between">
+                <Label
+                  htmlFor="confirm-password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Confirm Password
+                </Label>
+              </div>
+              <div className="mt-2">
+                <Input
+                  id="confirm-password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  disabled={loading}
+                  value={passwordConfirmation}
+                  onChange={(e) => setPasswordConfirmation(e.target.value)}
+                />
+              </div>
+            </div>
 
             <div>
               <Button
@@ -126,20 +142,10 @@ export default function LoginPage() {
                 {loading && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Sign in
+                Update Password
               </Button>
             </div>
           </form>
-
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{" "}
-            <Link
-              href="/signup"
-              className="text-orangeColor hover:text-orangeColor/80 font-semibold leading-6"
-            >
-              Sign up now
-            </Link>
-          </p>
         </div>
       </div>
     </div>
