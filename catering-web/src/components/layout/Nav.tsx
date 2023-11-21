@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Dialog } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import {
   createClientComponentClient,
   User,
 } from "@supabase/auth-helpers-nextjs"
+
+import { cn } from "@/lib/utils"
 
 import OrangeButton from "../general/SignInButton"
 
@@ -21,6 +24,8 @@ const navigation = [
 
 export default function Nav() {
   const supabase = createClientComponentClient()
+  const pathname = usePathname()
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
@@ -69,7 +74,10 @@ export default function Nav() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-white"
+              className={cn(
+                "text-sm font-semibold leading-6",
+                pathname === item.href ? "text-orangeColor" : "text-white"
+              )}
             >
               {item.name}
             </Link>
@@ -120,7 +128,13 @@ export default function Nav() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={cn(
+                      "-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7",
+                      pathname === item.href
+                        ? "text-orangeColor bg-white"
+                        : "hover:text-orangeColor text-white hover:bg-white"
+                    )}
                   >
                     {item.name}
                   </Link>
