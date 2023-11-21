@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
 import { Montserrat, Quicksand } from "next/font/google"
+import { Toaster } from "sonner"
 
 import { cn } from "@/lib/utils"
+import Footer from "@/components/layout/Footer"
 import SiteHeader from "@/components/layout/Nav"
 import { TailwindIndicator } from "@/components/TailwindIndicator"
 
 import "./globals.css"
-import Footer from "@/components/layout/Footer"
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <TailwindIndicator />
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   )

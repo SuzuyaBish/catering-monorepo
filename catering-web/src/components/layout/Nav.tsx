@@ -98,7 +98,7 @@ export default function Nav() {
                 ))}
               </div>
               <div className="py-6">
-                <Link href="#">
+                <Link href="/login">
                   <OrangeButton text="Sign In" size="lg" />
                 </Link>
               </div>
