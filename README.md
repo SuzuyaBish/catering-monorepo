@@ -42,6 +42,7 @@ This is the todo list as of November 16, 2023.
 - [ ] About page mobile
 - [x] Blog list page web
 - [x] Auth logic
+- [x] Recipe list page web
 
 ---
 
@@ -49,7 +50,6 @@ This is the todo list as of November 16, 2023.
 
 - [ ] Web mobile responsiveness
 - [ ] Blog list page mobile
-- [ ] Recipe list page web
 - [ ] Recipe list page mobile
 - [ ] Legal pages for web (Terms & Conditions + Privacy Policy)
 - [ ] Legal pages for mobile (Terms & Conditions + Privacy Policy)
