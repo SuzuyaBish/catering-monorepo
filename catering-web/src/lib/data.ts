@@ -143,7 +143,6 @@ export const team = [
   },
 ]
 
-
 export const filters = [
   {
     id: "color",
@@ -208,7 +207,7 @@ export const products = [
     imageAlt: "Front of plain black t-shirt.",
   },
   {
-    id:3,
+    id: 3,
     name: "Basic Tee",
     href: "#",
     price: "$32",
@@ -220,7 +219,7 @@ export const products = [
     imageAlt: "Front of plain black t-shirt.",
   },
   {
-    id:4,
+    id: 4,
     name: "Basic Tee",
     href: "#",
     price: "$32",
@@ -232,7 +231,7 @@ export const products = [
     imageAlt: "Front of plain black t-shirt.",
   },
   {
-    id:5,
+    id: 5,
     name: "Basic Tee",
     href: "#",
     price: "$32",
@@ -244,7 +243,7 @@ export const products = [
     imageAlt: "Front of plain black t-shirt.",
   },
   {
-    id:6,
+    id: 6,
     name: "Basic Tee",
     href: "#",
     price: "$32",
@@ -255,4 +254,76 @@ export const products = [
       "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg",
     imageAlt: "Front of plain black t-shirt.",
   },
+]
+
+export const products1 = [
+  {
+    id: 1,
+    name: "Focus Paper Refill",
+    href: "#",
+    price: "$13",
+    description: "3 sizes available",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-01.jpg",
+    imageAlt:
+      "Person using a pen to cross a task off a productivity paper card.",
+  },
+  {
+    id: 2,
+    name: "Focus Card Holder",
+    href: "#",
+    price: "$64",
+    description: "Walnut",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-02.jpg",
+    imageAlt: "Paper card sitting upright in walnut card holder on desk.",
+  },
+  {
+    id: 3,
+    name: "Focus Carry Pouch",
+    href: "#",
+    price: "$32",
+    description: "Heather Gray",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-03.jpg",
+    imageAlt:
+      "Textured gray felt pouch for paper cards with snap button flap and elastic pen holder loop.",
+  },
+  // More products...
+]
+export const products2 = [
+  {
+    id: 7,
+    name: "Electric Kettle",
+    href: "#",
+    price: "$149",
+    description: "Black",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-07.jpg",
+    imageAlt:
+      "Close up of long kettle spout pouring boiling water into pour-over coffee mug with frothy coffee.",
+  },
+  {
+    id: 8,
+    name: "Leather Workspace Pad",
+    href: "#",
+    price: "$165",
+    description: "Black",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-08.jpg",
+    imageAlt:
+      "Extra large black leather workspace pad on desk with computer, wooden shelf, desk organizer, and computer peripherals.",
+  },
+  {
+    id: 9,
+    name: "Leather Long Wallet",
+    href: "#",
+    price: "$118",
+    description: "Natural",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-09.jpg",
+    imageAlt:
+      "Leather long wallet held open with hand-stitched card dividers, full-length bill pocket, and simple tab closure.",
+  },
+  // More products...
 ]

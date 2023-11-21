@@ -2,11 +2,11 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -17,8 +17,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        quicksand: ['var(--font-quicksand)'],
-        montserrat: ['var(--font-montserrat)'],
+        quicksand: ["var(--font-quicksand)"],
+        montserrat: ["var(--font-montserrat)"],
       },
       colors: {
         blueColor: "#1b222d",
@@ -79,5 +79,10 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require('@tailwindcss/aspect-ratio')],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+  ],
 }
