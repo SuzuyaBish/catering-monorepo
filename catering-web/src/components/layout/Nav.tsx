@@ -1,9 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Dialog } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import {
+  createClientComponentClient,
+  User,
+} from "@supabase/auth-helpers-nextjs"
 
 import OrangeButton from "../general/SignInButton"
 
@@ -16,7 +20,24 @@ const navigation = [
 ]
 
 export default function Nav() {
+  const supabase = createClientComponentClient()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  const getUser = async () => {
+    const v = await supabase.auth.getUser()
+
+    return v.data.user
+  }
+
+  useEffect(() => {
+    getUser().then((user) => {
+      setUser(user)
+      setLoading(false)
+    })
+  }, [])
+
   return (
     <header className="bg-blueColor sticky inset-x-0 top-0 z-50 backdrop-blur">
       <nav
@@ -55,7 +76,15 @@ export default function Nav() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <OrangeButton text="Sign In" />
+          {user ? (
+            <Link href="/account">
+              <OrangeButton text="Your Account" size="lg" />
+            </Link>
+          ) : (
+            <Link href="/login">
+              <OrangeButton text="Sign In" size="lg" />
+            </Link>
+          )}
         </div>
       </nav>
       <Dialog
@@ -98,9 +127,15 @@ export default function Nav() {
                 ))}
               </div>
               <div className="py-6">
-                <Link href="/login">
-                  <OrangeButton text="Sign In" size="lg" />
-                </Link>
+                {user ? (
+                  <Link href="/account">
+                    <OrangeButton text="Your Account" size="lg" />
+                  </Link>
+                ) : (
+                  <Link href="/login">
+                    <OrangeButton text="Sign In" size="lg" />
+                  </Link>
+                )}
               </div>
             </div>
           </div>
