@@ -16,11 +16,18 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [passwordConfirmation, setPasswordConfirmation] = useState("")
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     setLoading(true)
+
+    if (password !== passwordConfirmation) {
+      toast.error("Passwords do not match")
+      setLoading(false)
+      return
+    }
 
     try {
       const { error } = await supabase.auth.signUp({
@@ -104,6 +111,28 @@ export default function SignUpPage() {
                   disabled={loading}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center justify-between">
+                <Label
+                  htmlFor="confirm-password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Confirm Password
+                </Label>
+              </div>
+              <div className="mt-2">
+                <Input
+                  id="confirm-password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  disabled={loading}
+                  value={passwordConfirmation}
+                  onChange={(e) => setPasswordConfirmation(e.target.value)}
                 />
               </div>
             </div>

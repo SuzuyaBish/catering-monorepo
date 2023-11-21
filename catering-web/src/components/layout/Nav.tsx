@@ -41,6 +41,15 @@ export default function Nav() {
       setUser(user)
       setLoading(false)
     })
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (event == "SIGNED_IN") {
+        getUser().then((user) => {
+          setUser(user)
+          setLoading(false)
+        })
+      }
+    })
   }, [])
 
   return (
