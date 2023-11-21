@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
@@ -52,12 +53,15 @@ export default function LoginPage() {
   return (
     <div className="h-full">
       <div className="flex h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
+        <div className="relative sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="relative mx-auto h-24 w-24">
+            <Image
+              className="object-cover"
+              src="/ico.png"
+              fill
+              alt="Your Company"
+            />
+          </div>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>

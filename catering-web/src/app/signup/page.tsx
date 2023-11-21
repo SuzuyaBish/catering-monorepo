@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { toast } from "sonner"
+import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -35,7 +36,7 @@ export default function SignUpPage() {
         password: password,
         options: {
           emailRedirectTo: "http://localhost:3000/login",
-        }
+        },
       })
 
       if (error) {
@@ -59,11 +60,14 @@ export default function SignUpPage() {
     <div className="h-full">
       <div className="flex h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
+          <div className="relative mx-auto h-24 w-24">
+            <Image
+              className="object-cover"
+              src="/ico.png"
+              fill
+              alt="Your Company"
+            />
+          </div>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign up for an account
           </h2>
