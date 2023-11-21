@@ -46,7 +46,7 @@ This is the todo list as of November 16, 2023.
 - [x] Created CMS
 - [ ] CMS Recipe logic and ui
 - [ ] CMS Blog logic and ui
-- [ ] CMS Testimonials logic and ui
+- [x] CMS Testimonials logic and ui
 
 ---
 
