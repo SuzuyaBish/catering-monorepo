@@ -7,7 +7,7 @@ This mono repo contains the source code for both the web and mobile versions of 
 ## Contributors
 
 - Jarrod Sloan (ST10247529)
-- Peter Thompson (student number)
+- Peter Thompson (ST10119797)
 
 ## Table of Contents
 
@@ -53,7 +53,7 @@ This is the todo list as of November 16, 2023.
 - [ ] Recipe list page mobile
 - [ ] Legal pages for web (Terms & Conditions + Privacy Policy)
 - [ ] Legal pages for mobile (Terms & Conditions + Privacy Policy)
-- [ ] Mobile Landing page
+- [x] Mobile Landing page
 - [ ] Testimony page mobile
 - [ ] Recipe content page mobile
 
