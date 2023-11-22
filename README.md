@@ -18,7 +18,7 @@ This mono repo contains the source code for both the web and mobile versions of 
     - [List for Jarrod Sloan](#list-for-jarrod-sloan)
     - [List for Peter Thompson](#list-for-peter-thompson)
   - [Requirements](#requirements)
-  - [Catering Web Install \& Run Instructions](#catering-web-install--run-instructions)
+  - [Catering Web \&\& CMS Install \& Run Instructions](#catering-web--cms-install--run-instructions)
   - [Catering Mobile Install \& Run Instructions](#catering-mobile-install--run-instructions)
 
 ## Todo List
@@ -79,7 +79,7 @@ If you do not have Android you can install it from [here](https://developer.andr
 
 If you do not have the Flutter SDK follow the instructions for your operating system [here](https://docs.flutter.dev/get-started/install).
 
-## Catering Web Install & Run Instructions
+## Catering Web && CMS Install & Run Instructions
 
 1. Clone the repo:
 
@@ -90,16 +90,24 @@ If you do not have the Flutter SDK follow the instructions for your operating sy
 2. Move into the catering web folder and install dependencies:
 
    ```bash
-   cd catering-web && pnpm install
+   cd catering-monorepo && pnpm install
    ```
 
-3. Run the catering-web application:
+3. Run the catering-web && catering-cms applications:
 
    ```bash
-   pnpm run dev
+   pnpm turbo dev
    ```
 
-The application will now be running on [localhost:3000](http://localhost:3000/).
+The applications will now be running on [localhost:3000](http://localhost:3000/) && [localhost:3001](http://localhost:3001).
+
+If you want to run each of these individually do the following:
+
+```bash
+pnpm turbo dev --filter catering-web
+or
+pnpm turbo dev --filter catering-cms
+```
 
 ## Catering Mobile Install & Run Instructions
 
@@ -114,7 +122,7 @@ These instructions assume you are using VSCode.
 2. Open the project in VSCode:
 
    ```bash
-   cd catering-mobile && code .
+   cd catering-monorepo/apps/catering-mobile && code .
    ```
 
 3. Select the device you want to run the application on:
