@@ -1,81 +1,133 @@
-# Turborepo starter
+# XBCAD WIL PROJECT
 
-This is an official starter Turborepo.
+**!!!Please remember to pull the code before you make changes!!!**
 
-## Using this example
+This mono repo contains the source code for both the web and mobile versions of the catering app for the XBCAD WIL project.
 
-Run the following command:
+## Contributors
 
-```sh
-npx create-turbo@latest
+- Jarrod Sloan (ST10247529)
+- Peter Thompson (ST10119797)
+
+## Table of Contents
+
+- [XBCAD WIL PROJECT](#xbcad-wil-project)
+  - [Contributors](#contributors)
+  - [Table of Contents](#table-of-contents)
+  - [Todo List](#todo-list)
+    - [List for Jarrod Sloan](#list-for-jarrod-sloan)
+    - [List for Peter Thompson](#list-for-peter-thompson)
+  - [Requirements](#requirements)
+  - [Catering Web Install \& Run Instructions](#catering-web-install--run-instructions)
+  - [Catering Mobile Install \& Run Instructions](#catering-mobile-install--run-instructions)
+
+## Todo List
+
+This is the todo list as of November 16, 2023.
+
+### List for Jarrod Sloan
+
+- [x] Create and setup database
+- [x] Web landing page
+- [x] Contact us page web
+- [x] Contact us page mobile
+- [x] Testimony page web
+- [ ] Contact us logic (with Resend) web
+- [ ] Contact us logic (with Resend) mobile
+- [x] Blog content page web
+- [ ] Blog content page mobile
+- [ ] Mobile layout shell
+- [x] Recipe content page web
+- [x] About page web
+- [ ] About page mobile
+- [x] Blog list page web
+- [x] Auth logic
+- [x] Recipe list page web
+- [x] Created CMS
+- [ ] CMS Recipe logic and ui
+- [ ] CMS Blog logic and ui
+- [ ] CMS Testimonials logic and ui
+
+---
+
+### List for Peter Thompson
+
+- [ ] Web mobile responsiveness
+- [ ] Blog list page mobile
+- [ ] Recipe list page mobile
+- [ ] Legal pages for web (Terms & Conditions + Privacy Policy)
+- [ ] Legal pages for mobile (Terms & Conditions + Privacy Policy)
+- [x] Mobile Landing page
+- [ ] Testimony page mobile
+- [ ] Recipe content page mobile
+
+## Requirements
+
+- Node (LTS)
+- NPM
+- PNPM
+- Flutter SDK
+
+If you do not have PNPM installed run the following (requires npm):
+
+```bash
+npm install -g pnpm
 ```
 
-## What's inside?
+**Optional**:
+If you do not have Android you can install it from [here](https://developer.android.com/studio/install).
 
-This Turborepo includes the following packages/apps:
+If you do not have the Flutter SDK follow the instructions for your operating system [here](https://docs.flutter.dev/get-started/install).
 
-### Apps and Packages
+## Catering Web Install & Run Instructions
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+1. Clone the repo:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+   ```bash
+   git clone https://github.com/SuzuyaBish/catering-monorepo.git
+   ```
 
-### Utilities
+2. Move into the catering web folder and install dependencies:
 
-This Turborepo has some additional tools already setup for you:
+   ```bash
+   cd catering-web && pnpm install
+   ```
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+3. Run the catering-web application:
 
-### Build
+   ```bash
+   pnpm run dev
+   ```
 
-To build all apps and packages, run the following command:
+The application will now be running on [localhost:3000](http://localhost:3000/).
 
-```
-cd my-turborepo
-pnpm build
-```
+## Catering Mobile Install & Run Instructions
 
-### Develop
+These instructions assume you are using VSCode.
 
-To develop all apps and packages, run the following command:
+1. Clone the repo (if you haven't already):
 
-```
-cd my-turborepo
-pnpm dev
-```
+   ```bash
+   git clone https://github.com/SuzuyaBish/catering-monorepo.git
+   ```
 
-### Remote Caching
+2. Open the project in VSCode:
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+   ```bash
+   cd catering-mobile && code .
+   ```
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+3. Select the device you want to run the application on:
 
-```
-cd my-turborepo
-npx turbo login
-```
+   ```bash
+   Cntrl + Shift + P
+   Flutter: Select Device
+   ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+4. Run the application:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+   ```bash
+   F5
+   ```
 
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+The application will now start on the chosen device.
