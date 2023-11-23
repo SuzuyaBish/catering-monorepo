@@ -1,5 +1,5 @@
+import { SVGProps } from "react"
 import Image from "next/image"
-import { JSX, SVGProps } from "react"
 
 const navigation = {
   solutions: [
@@ -101,7 +101,12 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <div className="relative h-20 w-20">
-              <Image className="object-cover" fill src="/ico.png" alt="Company name" />
+              <Image
+                className="object-cover"
+                fill
+                src="/ico.png"
+                alt="Company name"
+              />
             </div>
             <p className="text-sm leading-6 text-gray-300">
               Making the world a better place through constructing elegant

@@ -2,6 +2,7 @@ import { CommandMenu } from "@/components/layout/CommandMenu"
 import { MainNav } from "@/components/layout/MainNav"
 import { MobileNav } from "@/components/layout/MobileNav"
 import { ModeToggle } from "@/components/ModeToggle"
+import SignoutButton from "../general/SignoutButton"
 
 export function SiteHeader() {
   return (
@@ -15,6 +16,7 @@ export function SiteHeader() {
           </div>
           <nav className="flex items-center">
             <ModeToggle />
+            <SignoutButton />
           </nav>
         </div>
       </div>
