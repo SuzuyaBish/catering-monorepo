@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/providers/ThemeProvider"
+import { Toaster } from "sonner"
 
 import { cn } from "@/lib/utils"
-import { Toaster } from "sonner"
 import { SiteFooter } from "@/components/layout/SiteFooter"
 import { TailwindIndicator } from "@/components/TailwindIndicator"
 
