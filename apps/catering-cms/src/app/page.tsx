@@ -77,6 +77,7 @@ export default function Home() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={loading}
+                  placeholder="Email address"
                 />
               </div>
             </div>
@@ -100,6 +101,7 @@ export default function Home() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={loading}
+                  placeholder="Password"
                 />
               </div>
             </div>

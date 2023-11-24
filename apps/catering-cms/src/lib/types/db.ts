@@ -1,5 +1,5 @@
 type Recipe = {
-  id?: string
+  id: string
   title: string
   description: string
   created_at: string
@@ -7,16 +7,17 @@ type Recipe = {
   highlights: string[]
   ingredients: string[]
   instructions: string[]
-  reviews: Review[]
   image: string
+  reviews: Review[]
 }
 
 type Review = {
   id: string
-  user_id: string
-  rating: number
-  comment: string
   created_at: string
+  author: User
+  review: string
+  recipe: Recipe
+  rating: string
 }
 
 type User = {

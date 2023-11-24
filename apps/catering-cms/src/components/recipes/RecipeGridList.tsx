@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 interface RecipeGridListProps {
-  recipes: Recipe[]
+  recipes: Pick<Recipe, "id" | "image" | "title" | "description">[]
 }
 
 const RecipeGridList: FC<RecipeGridListProps> = (props) => {
