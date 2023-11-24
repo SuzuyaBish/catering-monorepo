@@ -42,3 +42,11 @@ type Blog = {
   bottom_content: string
   author: User
 }
+
+type Testimonial = {
+  id: string
+  created_at: string
+  last_updated: string
+  user: User
+  testimonial: string
+}
