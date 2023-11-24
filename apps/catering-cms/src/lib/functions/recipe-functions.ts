@@ -133,3 +133,27 @@ export const updateRecipe = async (recipe: Recipe, image: File) => {
     throw error
   }
 }
+
+export const deleteRecipe = async (id: string) => {
+  try {
+    const { data, error } = await supabase
+      .from("recipes")
+      .delete()
+      .eq("id", id)
+      .select("*")
+
+    if (error) {
+      throw error
+    }
+
+    if (data) {
+      toast.success("Recipe deleted successfully", {
+        description: "You will be redirected shortly.",
+      })
+
+      return data
+    }
+  } catch (error) {
+    throw error
+  }
+}

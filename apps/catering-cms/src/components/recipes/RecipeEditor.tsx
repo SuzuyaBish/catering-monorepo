@@ -2,7 +2,7 @@
 
 import { FC, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Trash } from "lucide-react"
 
 import { updateRecipe } from "@/lib/functions/recipe-functions"
 import { useRecipeStore } from "@/lib/stores/recipe-store"
@@ -12,6 +12,7 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Textarea } from "../ui/textarea"
+import DeleteRecipeButton from "./DeleteRecipeButton"
 
 interface RecipeEditorProps {
   recipe: Recipe
@@ -25,6 +26,7 @@ const RecipeEditor: FC<RecipeEditorProps> = (props) => {
 
   useEffect(() => {
     store.setRecipe(props.recipe)
+    store.setRecipeImage({} as File)
   }, [])
   return (
     <div>
@@ -41,20 +43,23 @@ const RecipeEditor: FC<RecipeEditorProps> = (props) => {
         >
           <ArrowLeft className="h-4 w-4" />
         </Button>
-        <Button
-          variant="secondary"
-          disabled={loading}
-          onClick={async () => {
-            setLoading(true)
+        <div className="flex items-center space-x-3">
+          <DeleteRecipeButton loading={loading} setLoading={setLoading} />
+          <Button
+            variant="secondary"
+            disabled={loading}
+            onClick={async () => {
+              setLoading(true)
 
-            await updateRecipe(store.recipe, store.recipeImage).then(() => {
-              setLoading(false)
-            })
-          }}
-        >
-          {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-          Save Changes
-        </Button>
+              await updateRecipe(store.recipe, store.recipeImage).then(() => {
+                setLoading(false)
+              })
+            }}
+          >
+            {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+            Save Changes
+          </Button>
+        </div>
       </div>
       <form className="mt-10">
         <div className="grid gap-y-5">
