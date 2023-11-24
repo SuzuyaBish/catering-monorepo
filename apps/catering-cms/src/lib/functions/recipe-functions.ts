@@ -1,31 +1,9 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { toast } from "sonner"
+import { uploadImage } from "./general"
 
 const supabase = createClientComponentClient()
 
-export const uploadImage = async (file: File, bucket: string) => {
-  try {
-    const name = `${file.name}`
-
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .upload(name, file, {
-        upsert: false,
-      })
-
-    if (error) {
-      console.log("duplicate")
-    }
-
-    const { data: urlData } = await supabase.storage
-      .from(bucket)
-      .getPublicUrl(name)
-
-    return urlData.publicUrl
-  } catch (error) {
-    throw error
-  }
-}
 
 export const createRecipe = async (title: string, image: File) => {
   try {
@@ -96,7 +74,7 @@ export const updateRecipe = async (recipe: Recipe, image: File) => {
 
       newRecipe = {
         ...recipe,
-        image: imageUrl,
+        image: imageUrl || recipe.image,
       }
     }
 

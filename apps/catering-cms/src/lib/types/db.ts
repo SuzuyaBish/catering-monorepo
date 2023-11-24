@@ -29,3 +29,16 @@ type User = {
   avatar: string
   role: "Authenticated" | "Moderator"
 }
+
+type Blog = {
+  id: string
+  created_at: string
+  last_updated: string
+  title: string 
+  subtitle: string
+  image: string
+  top_content: string
+  break_image: string
+  bottom_content: string
+  author: User
+}
