@@ -32,23 +32,19 @@ This is the todo list as of November 16, 2023.
 - [x] Contact us page web
 - [x] Contact us page mobile
 - [x] Testimony page web
-- [ ] Contact us logic (with Resend) web
+- [x] Contact us logic (with Resend) web
 - [ ] Contact us logic (with Resend) mobile
 - [x] Blog content page web
-- [ ] Blog content page mobile
-- [ ] Mobile layout shell
 - [x] Recipe content page web
 - [x] About page web
-- [ ] About page mobile
 - [x] Blog list page web
 - [x] Auth logic
 - [x] Recipe list page web
 - [x] Created CMS
 - [x] CMS Recipe logic and ui
 - [ ] CMS Blog logic and ui
-- [ ] CMS Testimonials logic and ui
 - [x] Web account page ui and logic
-- [ ] Mobile acocunt page ui and logic 
+- [ ] Mobile acocunt page ui and logic
 
 ---
 
@@ -62,6 +58,9 @@ This is the todo list as of November 16, 2023.
 - [x] Mobile Landing page
 - [ ] Testimony page mobile
 - [ ] Recipe content page mobile
+- [x] Mobile layout shell
+- [x] About page mobile
+- [ ] Blog content page mobile
 
 ## Requirements
 
