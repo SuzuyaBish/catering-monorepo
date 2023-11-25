@@ -1,11 +1,33 @@
-import { fetchRecipes } from "@/lib/actions"
+"use server"
+
+import { cookies } from "next/headers"
+
+import { createClient } from "@/lib/server"
 import CTA from "@/components/landing/CTA"
 import RecipeList from "@/components/recipe/RecipeList"
 
-export const dynamic = "force-dynamic"
+// export const dynamic = "force-dynamic"
 
-export default async function Example() {
-  const recipes = await fetchRecipes()
+export default async function RecipePage() {
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  const { data } = await supabase
+    .from("recipes")
+    .select("*")
+
+  const { data: userData } = await supabase
+    .from("users")
+    .select("*, favorites(*, recipe(*))")
+    .eq("user_id", user?.id)
+    .single()
+
+  const recipe = data as Recipe[]
+  const userValues = userData as User
   return (
     <main>
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -29,7 +51,7 @@ export default async function Example() {
           <h2 id="products-heading" className="sr-only">
             Products
           </h2>
-          <RecipeList recipes={recipes.recipes} user={recipes.user} />
+          <RecipeList recipes={recipe} user={userValues} />
         </section>
         <CTA />
         <section
@@ -40,7 +62,7 @@ export default async function Example() {
             More products
           </h2>
 
-          <RecipeList recipes={recipes.recipes} user={recipes.user} />
+          <RecipeList recipes={recipe} user={userValues} />
         </section>
       </div>
     </main>

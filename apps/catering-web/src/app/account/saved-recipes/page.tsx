@@ -1,16 +1,33 @@
+"use server"
+
 import { fetchUser } from "@/lib/actions"
 import { getRecipesFromFavorites } from "@/lib/functions"
 import RecipeList from "@/components/recipe/RecipeList"
+import { cookies } from "next/headers"
+import { createClient } from "@/lib/server"
 
 const secondaryNavigation = [
   { name: "Account", href: "/account", current: false },
   { name: "Saved Recipes", href: "/account/saved-recipes", current: true },
 ]
 
-export const dynamic = "force-dynamic"
+// export const dynamic = "force-dynamic"
 
 export default async function SavedRecipes() {
-  const user = await fetchUser()
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  const { data: userData } = await supabase
+    .from("users")
+    .select("*, favorites(*, recipe(*))")
+    .eq("user_id", user?.id)
+    .single()
+
+  const userValues = userData as User
 
   return (
     <div>
@@ -37,8 +54,8 @@ export default async function SavedRecipes() {
           </header>
           <main className="max-w-3xl px-4 py-20 sm:px-6 lg:max-w-7xl lg:px-8">
             <RecipeList
-              recipes={getRecipesFromFavorites(user.favorites)}
-              user={user}
+              recipes={getRecipesFromFavorites(userValues.favorites)}
+              user={userValues}
             />
           </main>
         </main>
