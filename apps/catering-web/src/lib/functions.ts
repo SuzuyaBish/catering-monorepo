@@ -10,9 +10,7 @@ export function canShowBlog(blog: Blog) {
   if (!blog.created_at) return false
   if (!blog.last_updated) return false
   if (!blog.top_content) return false
-  if (!blog.bottom_content) return false
   if (!blog.image) return false
-  if (!blog.break_image) return false
 
   return true
 }

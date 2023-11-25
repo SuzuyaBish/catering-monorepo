@@ -57,23 +57,6 @@ export default async function BlogContentPage({
           )
         })}
       </div>
-      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl lg:aspect-[4/2]">
-        <Image
-          src={blog.break_image}
-          fill
-          alt=""
-          className="aspect-[16/9] w-full object-cover"
-        />
-      </div>
-      <div>
-        {blog.bottom_content.split("\n").map((content) => {
-          return (
-            <div key={content} className="mb-5">
-              {content}
-            </div>
-          )
-        })}
-      </div>
       <div className="mr-auto mt-10">
         <h3 className="text-sm font-medium text-gray-900">Share</h3>
         <ul role="list" className="mt-4 flex items-center space-x-6">

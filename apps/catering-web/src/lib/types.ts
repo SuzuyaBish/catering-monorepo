@@ -38,8 +38,6 @@ type Blog = {
   subtitle: string
   image: string
   top_content: string
-  break_image: string
-  bottom_content: string
   author: User
 }
 
