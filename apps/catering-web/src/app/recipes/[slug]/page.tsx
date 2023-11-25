@@ -50,11 +50,11 @@ export default async function RecipeDetails({
               />
             </div>
           </div>
-          <form action="/auth/signout" method="post">
+          {/* <form action="/auth/signout" method="post">
             <button className="button block" type="submit">
               Sign out
             </button>
-          </form>
+          </form> */}
           <RecipeInfo recipe={recipe} user={userValues} />
           <RecipesTabs {...recipe} />
         </div>

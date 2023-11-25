@@ -6,14 +6,12 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Dialog } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
-import {
-  createClientComponentClient,
-  User,
-} from "@supabase/auth-helpers-nextjs"
 
 import { cn } from "@/lib/utils"
 
 import OrangeButton from "../general/SignInButton"
+import { createClient } from "@/lib/client"
+import { User } from "@supabase/supabase-js"
 
 const navigation = [
   { name: "About", href: "/about" },
@@ -24,7 +22,7 @@ const navigation = [
 ]
 
 export default function Nav() {
-  const supabase = createClientComponentClient()
+  const supabase = createClient()
   const pathname = usePathname()
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

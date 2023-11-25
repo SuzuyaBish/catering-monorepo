@@ -1,13 +1,13 @@
 import { cookies } from "next/headers"
 import Image from "next/image"
 import Link from "next/link"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 
 import { getReviewAverage } from "@/lib/functions"
+import { createClient } from "@/lib/server"
 
 export default async function RelatedRecipes() {
   const cookieStore = cookies()
-  const supabase = createServerComponentClient({ cookies: () => cookieStore })
+  const supabase = createClient(cookieStore)
   const { data } = await supabase.from("recipes").select("*").limit(4)
   const recipes = data as Recipe[]
 
