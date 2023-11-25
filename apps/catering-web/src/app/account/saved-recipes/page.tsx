@@ -1,5 +1,3 @@
-"use server"
-
 import { fetchUser } from "@/lib/actions"
 import { getRecipesFromFavorites } from "@/lib/functions"
 import RecipeList from "@/components/recipe/RecipeList"
@@ -8,6 +6,8 @@ const secondaryNavigation = [
   { name: "Account", href: "/account", current: false },
   { name: "Saved Recipes", href: "/account/saved-recipes", current: true },
 ]
+
+export const dynamic = "force-dynamic"
 
 export default async function SavedRecipes() {
   const user = await fetchUser()
@@ -36,7 +36,10 @@ export default async function SavedRecipes() {
             </nav>
           </header>
           <main className="max-w-3xl px-4 py-20 sm:px-6 lg:max-w-7xl lg:px-8">
-            <RecipeList recipes={getRecipesFromFavorites(user.favorites)} user={user} />
+            <RecipeList
+              recipes={getRecipesFromFavorites(user.favorites)}
+              user={user}
+            />
           </main>
         </main>
       </div>

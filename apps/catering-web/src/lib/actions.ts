@@ -1,10 +1,11 @@
 "use server"
 
 import { cookies } from "next/headers"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+
+import { createClient } from "./server"
 
 const cookieStore = cookies()
-const supabase = createServerComponentClient({ cookies: () => cookieStore })
+const supabase = createClient(cookieStore)
 
 export const fetchUser = async () => {
   const user = await supabase.auth.getUser()

@@ -1,14 +1,14 @@
 "use server"
 
 import { cookies } from "next/headers"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 
 import { canShowBlog } from "@/lib/functions"
 import BlogCard from "@/components/blogs/BlogCard"
+import { createClient } from "@/lib/server"
 
 export default async function BlogsPage() {
   const cookieStore = cookies()
-  const supabase = createServerComponentClient({ cookies: () => cookieStore })
+  const supabase = createClient(cookieStore)
   const { data } = await supabase.from("blogs").select("*, author(*)")
   const blogs = data as Blog[]
   return (

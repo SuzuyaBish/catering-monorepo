@@ -2,8 +2,8 @@
 
 import { cookies } from "next/headers"
 import Image from "next/image"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { format } from "date-fns"
+import { createClient } from "@/lib/server"
 
 export default async function BlogContentPage({
   params,
@@ -11,7 +11,7 @@ export default async function BlogContentPage({
   params: { slug: string }
 }) {
   const cookieStore = cookies()
-  const supabase = createServerComponentClient({ cookies: () => cookieStore })
+  const supabase = createClient(cookieStore)
   const { data } = await supabase
     .from("blogs")
     .select("*, author(*)")

@@ -1,23 +1,35 @@
-import { FC } from "react"
+"use client"
+
+import { FC, useState } from "react"
+import { useRouter } from "next/navigation"
 import { StarIcon } from "@heroicons/react/20/solid"
+import { toast } from "sonner"
 
 import {
   classNames,
+  favoriteRecipe,
   getReviewAverage,
   recipeInFavorites,
+  unFavoriteRecipe,
 } from "@/lib/functions"
 
-interface RecipeInfoProps extends Recipe {
-  user: User
+import { Icons } from "../icons"
+
+interface RecipeInfoProps {
+  recipe: Recipe
+  user: User | null
 }
 
 const RecipeInfo: FC<RecipeInfoProps> = (props) => {
+  const router = useRouter()
+
+  const [loading, setLoading] = useState(false)
   return (
     <div className="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:max-w-none">
       <div className="flex flex-col-reverse">
         <div className="mt-4">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-            {props.title}
+            {props.recipe.title}
           </h1>
 
           <h2 id="information-heading" className="sr-only">
@@ -32,7 +44,7 @@ const RecipeInfo: FC<RecipeInfoProps> = (props) => {
               <StarIcon
                 key={rating}
                 className={classNames(
-                  Number(getReviewAverage(props)) > rating
+                  Number(getReviewAverage(props.recipe)) > rating
                     ? "text-yellow-400"
                     : "text-gray-300",
                   "h-5 w-5 flex-shrink-0"
@@ -44,14 +56,49 @@ const RecipeInfo: FC<RecipeInfoProps> = (props) => {
         </div>
       </div>
 
-      <p className="mt-6 text-gray-500">{props.description}</p>
+      <p className="mt-6 text-gray-500">{props.recipe.description}</p>
 
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
         <button
           type="button"
           className="bg-orangeColor flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium text-white"
+          disabled={loading}
+          onClick={async () => {
+            if (props.user) {
+              if (recipeInFavorites(props.recipe, props.user.favorites)) {
+                setLoading(true)
+
+                await unFavoriteRecipe(
+                  props.recipe,
+                  props.user,
+                  props.user.favorites
+                ).then(() => {
+                  setLoading(false)
+                  router.refresh()
+                })
+              } else {
+                setLoading(true)
+
+                await favoriteRecipe(props.recipe, props.user).then(() => {
+                  setLoading(false)
+                  router.refresh()
+                })
+              }
+            } else {
+              toast.error("You must be logged in to favorite a recipe")
+            }
+          }}
         >
-          {recipeInFavorites(props, props.user.favorites) ? "Remove" : "Add"}{" "}
+          {loading && <Icons.spinner className="mr-3 h-5 w-5 animate-spin" />}
+          {props.user ? (
+            <>
+              {recipeInFavorites(props.recipe, props.user.favorites)
+                ? "Unfavorite"
+                : "Favorite"}
+            </>
+          ) : (
+            <>Favorite</>
+          )}
         </button>
         <button
           type="button"
@@ -65,7 +112,7 @@ const RecipeInfo: FC<RecipeInfoProps> = (props) => {
         <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
         <div className="prose prose-sm mt-4 text-gray-500">
           <ul role="list">
-            {props.highlights.map((highlight) => (
+            {props.recipe.highlights.map((highlight) => (
               <li key={highlight}>{highlight}</li>
             ))}
           </ul>

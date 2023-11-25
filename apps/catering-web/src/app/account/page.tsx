@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 
 import { updateUser } from "@/lib/functions"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
+import { createClient } from "@/lib/client"
 
 const secondaryNavigation = [
   { name: "Account", href: "/account", current: true },
@@ -16,7 +16,7 @@ const secondaryNavigation = [
 ]
 
 export default function Account() {
-  const supabase = createClientComponentClient()
+  const supabase = createClient()
 
   const [user, setUser] = useState<User>({} as User)
   const [firstName, setFirstName] = useState<string>("")

@@ -1,8 +1,8 @@
-"use server"
-
 import { fetchRecipes } from "@/lib/actions"
 import CTA from "@/components/landing/CTA"
 import RecipeList from "@/components/recipe/RecipeList"
+
+export const dynamic = "force-dynamic"
 
 export default async function Example() {
   const recipes = await fetchRecipes()

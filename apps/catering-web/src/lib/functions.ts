@@ -1,7 +1,8 @@
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { toast } from "sonner"
 
-const supabase = createClientComponentClient()
+import { createClient } from "./client"
+
+const supabase = createClient()
 
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
@@ -128,35 +129,59 @@ export const recipeInFavorites = (recipe: Recipe, favorites: Favorite[]) => {
   return recipeIds.includes(recipe.id)
 }
 
-export const fetchUser = async () => {
-  const user = await supabase.auth.getUser()
+export const unFavoriteRecipe = async (
+  recipe: Recipe,
+  user: User,
+  favorites: Favorite[]
+) => {
+  const favorite = favorites.find((f) => f.recipe.id === recipe.id)
 
-  const { data } = await supabase
-    .from("users")
-    .select("*, favorites(*, recipe(*))")
-    .eq("user_id", user.data.user?.id)
-    .single()
+  if (!favorite) {
+    toast.error("Error removing favorite")
+  } else {
+    const { error } = await supabase
+      .from("favorites")
+      .delete()
+      .eq("id", favorite.id)
 
-  return data as User
+    const { data: updatedUser, error: userError } = await supabase
+      .from("users")
+      .update({
+        favorites: user.favorites.filter((f) => f.id !== favorite.id),
+      })
+      .eq("id", user.id)
+      .single()
+
+    if (error || userError) {
+      toast.error("Error removing favorite")
+    }
+  }
 }
 
-export const fetchRecipeFromId = async (id: string) => {
-  const user = await supabase.auth.getSession()
-
-  const { data: userData } = await supabase
-    .from("users")
+export const favoriteRecipe = async (recipe: Recipe, user: User) => {
+  const { data, error } = await supabase
+    .from("favorites")
+    .insert([
+      {
+        user_id: user.user_id,
+        recipe: recipe.id,
+      },
+    ])
     .select("*")
-    .eq("user_id", user.data.session?.user.id)
+    .single()
+    console.log(data)
+
+  const favs = data! as Favorite
+
+  const { data: updatedUser, error: userError } = await supabase
+    .from("users")
+    .update({
+      favorites: [...user.favorites, favs.id],
+    })
+    .eq("id", user.id)
     .single()
 
-  const { data } = await supabase
-    .from("recipes")
-    .select("*, reviews(*, author(*))")
-    .eq("id", id)
-    .single()
-
-  return {
-    recipe: data as Recipe,
-    user: user,
+  if (error || userError) {
+    toast.error("Error adding favorite")
   }
 }

@@ -1,18 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
-import { toast } from "sonner"
 import Image from "next/image"
+import Link from "next/link"
+import { toast } from "sonner"
 
+import { createClient } from "@/lib/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
 
 export default function SignUpPage() {
-  const supabase = createClientComponentClient()
+  const supabase = createClient()
 
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")

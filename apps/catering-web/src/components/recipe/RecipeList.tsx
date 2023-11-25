@@ -31,8 +31,12 @@ const RecipeList: FC<RecipeListProps> = ({ recipes, user }) => {
               </div>
               <div className="flex items-center justify-between">
                 <h3 className="mt-4 text-sm text-gray-700">{recipe.title}</h3>
-                {recipeInFavorites(recipe, user.favorites) && (
-                  <StarIcon className="text-orangeColor h-4 w-4" />
+                {user && (
+                  <>
+                    {recipeInFavorites(recipe, user.favorites) && (
+                      <StarIcon className="text-orangeColor h-4 w-4" />
+                    )}
+                  </>
                 )}
               </div>
               <p className="mt-1 text-lg font-medium text-gray-900">
