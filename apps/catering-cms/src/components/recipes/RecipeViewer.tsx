@@ -8,8 +8,6 @@ import { StarIcon } from "@heroicons/react/20/solid"
 import { getReviewAverage } from "@/lib/functions/recipe-functions"
 import { useRecipeStore } from "@/lib/stores/recipe-store"
 
-import Review from "./Review"
-
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
 }
@@ -204,18 +202,6 @@ export default function RecipeViewer() {
                   >
                     Instructions
                   </Tab>
-                  <Tab
-                    className={({ selected }) =>
-                      classNames(
-                        selected
-                          ? "border-indigo-600 text-indigo-600"
-                          : "border-transparent text-gray-700 hover:border-gray-300 hover:text-gray-800",
-                        "whitespace-nowrap border-b-2 py-6 text-sm font-medium"
-                      )
-                    }
-                  >
-                    Reviews
-                  </Tab>
                 </Tab.List>
               </div>
               <Tab.Panels as={Fragment}>
@@ -244,14 +230,6 @@ export default function RecipeViewer() {
                       </Fragment>
                     ))}
                   </div>
-                </Tab.Panel>
-
-                <Tab.Panel className="-mb-10">
-                  <h3 className="sr-only">Customer Reviews</h3>
-
-                  {recipe?.reviews?.map((review, reviewIdx) => (
-                    <Review key={review.id} review={review} index={reviewIdx} />
-                  ))}
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>

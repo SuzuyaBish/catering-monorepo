@@ -36,17 +36,6 @@ export function MainNav() {
         >
           Blogs
         </Link>
-        <Link
-          href="/account/testimonials"
-          className={cn(
-            "hover:text-foreground/80 transition-colors",
-            pathname?.startsWith("/account/testimonials")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Testimonials
-        </Link>
       </nav>
     </div>
   )

@@ -28,6 +28,7 @@ type User = {
   last_name: string
   avatar: string
   role: "Authenticated" | "Moderator"
+  favorites: Favorite[]
 }
 
 type Blog = {
@@ -38,8 +39,6 @@ type Blog = {
   subtitle: string
   image: string
   top_content: string
-  break_image: string
-  bottom_content: string
   author: User
 }
 
@@ -49,4 +48,10 @@ type Testimonial = {
   last_updated: string
   user: User
   testimonial: string
+}
+
+type Favorite = {
+  id: string
+  user_id: string
+  recipe: Recipe
 }

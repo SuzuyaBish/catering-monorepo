@@ -4,17 +4,20 @@ import { FC, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 
+import { updateBlog } from "@/lib/functions/blog-functions"
 import { useBlogStore } from "@/lib/stores/blog-store"
 
 import { Icons } from "../Icons"
-import DeleteRecipeButton from "../recipes/DeleteRecipeButton"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Textarea } from "../ui/textarea"
+import DeleteBlogButton from "./DeleteBlogButton"
+import { UserPicker } from "./UserPicker"
 
 interface BlogEditorProps {
   blog: Blog
+  users: User[]
 }
 
 const BlogEditor: FC<BlogEditorProps> = (props) => {
@@ -26,7 +29,6 @@ const BlogEditor: FC<BlogEditorProps> = (props) => {
   useEffect(() => {
     store.setBlog(props.blog)
     store.setBlogImageMain({} as File)
-    store.setBlogImageSecondary({} as File)
   }, [])
   return (
     <div>
@@ -38,23 +40,22 @@ const BlogEditor: FC<BlogEditorProps> = (props) => {
           onClick={() => {
             store.setBlog({} as Blog)
             store.setBlogImageMain({} as File)
-            store.setBlogImageSecondary({} as File)
             router.back()
           }}
         >
           <ArrowLeft className="h-4 w-4" />
         </Button>
         <div className="flex items-center space-x-3">
-          <DeleteRecipeButton loading={loading} setLoading={setLoading} />
+          <DeleteBlogButton loading={loading} setLoading={setLoading} />
           <Button
             variant="secondary"
             disabled={loading}
             onClick={async () => {
               setLoading(true)
 
-              // await updateRecipe(store.recipe, store.recipeImage).then(() => {
-              //   setLoading(false)
-              // })
+              await updateBlog(store.blog, store.blogImageMain).then(() => {
+                setLoading(false)
+              })
             }}
           >
             {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
@@ -77,6 +78,10 @@ const BlogEditor: FC<BlogEditorProps> = (props) => {
               disabled={loading}
             />
           </div>
+          {/* <div className="grid space-y-2">
+            <Label>Author</Label>
+            <UserPicker users={props.users} />
+          </div> */}
           <div className="space-y-2">
             <Label htmlFor="title">Blog Title</Label>
             <Input
@@ -105,7 +110,7 @@ const BlogEditor: FC<BlogEditorProps> = (props) => {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="description">Blog Top Content</Label>
+            <Label htmlFor="description">Blog Content</Label>
             <Textarea
               id="description"
               placeholder="Blog Top Content"
@@ -115,34 +120,6 @@ const BlogEditor: FC<BlogEditorProps> = (props) => {
                 store.setBlog({
                   ...store.blog,
                   top_content: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="title">Blog Break Image</Label>
-            <Input
-              id="title"
-              placeholder="Blog Break Image"
-              type="file"
-              accept="image/*"
-              onChange={(e) =>
-                store.setBlogImageSecondary(e.target.files![0] as File)
-              }
-              disabled={loading}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="description">Blog Bottom Content</Label>
-            <Textarea
-              id="description"
-              placeholder="Blog Bottom Content"
-              value={store.blog.bottom_content}
-              disabled={loading}
-              onChange={(e) =>
-                store.setBlog({
-                  ...store.blog,
-                  bottom_content: e.target.value,
                 })
               }
             />

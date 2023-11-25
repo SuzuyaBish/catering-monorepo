@@ -4,8 +4,8 @@ import { FC, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Trash } from "lucide-react"
 
-import { deleteRecipe } from "@/lib/functions/recipe-functions"
-import { useRecipeStore } from "@/lib/stores/recipe-store"
+import { deleteBlog } from "@/lib/functions/blog-functions"
+import { useBlogStore } from "@/lib/stores/blog-store"
 
 import { Icons } from "../Icons"
 import {
@@ -20,13 +20,13 @@ import {
 } from "../ui/alert-dialog"
 import { Button } from "../ui/button"
 
-interface DeleteRecipeButtonProps {
+interface DeleteBlogButtonProps {
   loading: boolean
   setLoading: (loading: boolean) => void
 }
 
-const DeleteRecipeButton: FC<DeleteRecipeButtonProps> = (props) => {
-  const store = useRecipeStore()
+const DeleteBlogButton: FC<DeleteBlogButtonProps> = (props) => {
+  const store = useBlogStore()
   const [open, setOpen] = useState(false)
   const router = useRouter()
   return (
@@ -44,8 +44,8 @@ const DeleteRecipeButton: FC<DeleteRecipeButtonProps> = (props) => {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete this
-            recipe and remove the data from our servers.
+            This action cannot be undone. This will permanently delete this blog
+            and remove the data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -56,7 +56,7 @@ const DeleteRecipeButton: FC<DeleteRecipeButtonProps> = (props) => {
             onClick={async () => {
               props.setLoading(true)
 
-              await deleteRecipe(store.recipe.id).then(() => {
+              await deleteBlog(store.blog.id).then(() => {
                 router.back()
               })
             }}
@@ -72,4 +72,4 @@ const DeleteRecipeButton: FC<DeleteRecipeButtonProps> = (props) => {
   )
 }
 
-export default DeleteRecipeButton
+export default DeleteBlogButton

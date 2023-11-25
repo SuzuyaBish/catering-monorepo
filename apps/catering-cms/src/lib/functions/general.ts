@@ -10,7 +10,7 @@ export const uploadImage = async (file: File, bucket: string) => {
     const { data, error } = await supabase.storage
       .from(bucket)
       .upload(name, file, {
-        upsert: false,
+        upsert: true,
       })
 
     if (error) {

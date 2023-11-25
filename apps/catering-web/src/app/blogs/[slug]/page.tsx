@@ -48,7 +48,7 @@ export default async function BlogContentPage({
           className="aspect-[16/9] w-full object-cover"
         />
       </div>
-      <div>
+      <div className="mr-auto">
         {blog.top_content.split("\n").map((content) => {
           return (
             <div key={content} className="mb-5">

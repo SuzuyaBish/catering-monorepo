@@ -32,7 +32,7 @@ const BlogGridList: FC<BlogGridListProps> = (props) => {
             <p className="text-foreground pointer-events-none mt-2 block truncate text-sm font-medium">
               {blog.title}
             </p>
-            <p className="text-muted-foreground pointer-events-none block text-sm font-medium">
+            <p className="text-muted-foreground pointer-events-none block truncate text-sm font-medium">
               {blog.subtitle}
             </p>
           </li>
