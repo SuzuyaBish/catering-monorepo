@@ -14,6 +14,7 @@ import {
 } from "@/lib/functions"
 
 import { Icons } from "../icons"
+import CreateReviewButton from "./CreateReview"
 
 interface RecipeInfoProps {
   recipe: Recipe
@@ -24,6 +25,7 @@ const RecipeInfo: FC<RecipeInfoProps> = (props) => {
   const router = useRouter()
 
   const [loading, setLoading] = useState(false)
+
   return (
     <div className="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:max-w-none">
       <div className="flex flex-col-reverse">
@@ -100,12 +102,19 @@ const RecipeInfo: FC<RecipeInfoProps> = (props) => {
             <>Favorite</>
           )}
         </button>
-        <button
-          type="button"
-          className="text-orangeColor flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-50 px-8 py-3 text-base font-medium"
-        >
-          Write Review
-        </button>
+        {props.user ? (
+          <CreateReviewButton recipe={props.recipe} user={props.user} />
+        ) : (
+          <button
+            type="button"
+            className="text-orangeColor flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-50 px-8 py-3 text-base font-medium"
+            onClick={() => {
+              toast.error("You must be logged in to write a review")
+            }}
+          >
+            Write Review
+          </button>
+        )}
       </div>
 
       <div className="mt-10 border-t border-gray-200 pt-10">

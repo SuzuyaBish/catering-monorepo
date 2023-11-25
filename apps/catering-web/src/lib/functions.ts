@@ -169,7 +169,7 @@ export const favoriteRecipe = async (recipe: Recipe, user: User) => {
     ])
     .select("*")
     .single()
-    console.log(data)
+  console.log(data)
 
   const favs = data! as Favorite
 
@@ -183,5 +183,43 @@ export const favoriteRecipe = async (recipe: Recipe, user: User) => {
 
   if (error || userError) {
     toast.error("Error adding favorite")
+  }
+}
+
+export const writeReview = async (
+  author: string,
+  review: string,
+  rating: number,
+  recipe: Recipe,
+) => {
+  const { data, error } = await supabase
+    .from("reviews")
+    .insert({
+      author: author,
+      recipe: recipe.id,
+      review: review,
+      rating: rating,
+    })
+    .select("*")
+    .single()
+
+  const reviewData = data! as Review
+
+  const getIdsFromReviews = recipe.reviews.map((r) => r.id)
+
+  const { data: updatedRecipe, error: recipeError } = await supabase
+    .from("recipes")
+    .update({
+      reviews: [...getIdsFromReviews, reviewData.id],
+    })
+    .eq("id", recipe.id)
+    .single()
+
+  if (error || recipeError) {
+    toast.error("Error adding review")
+    console.log("Review", error)
+    console.log("Recipe", recipeError)
+  } else {
+    toast.success("Review added!")
   }
 }

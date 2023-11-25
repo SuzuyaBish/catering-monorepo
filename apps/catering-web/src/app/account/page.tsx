@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 
+import { createClient } from "@/lib/client"
 import { updateUser } from "@/lib/functions"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
-import { createClient } from "@/lib/client"
 
 const secondaryNavigation = [
   { name: "Account", href: "/account", current: true },
@@ -165,6 +165,29 @@ export default function Account() {
                       )}
                       Save
                     </Button>
+                  </div>
+                </form>
+              </div>
+              <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+                <div>
+                  <h2 className="text-foreground text-base font-semibold leading-7">
+                    Sign Out
+                  </h2>
+                  <p className="text-muted-foreground mt-1 text-sm leading-6">
+                    You won&apos;t be able to write reviews or favorite recipes
+                    while signed out.
+                  </p>
+                </div>
+
+                <form
+                  action="/auth/signout"
+                  method="post"
+                  className="md:col-span-2"
+                >
+                  <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+                    <div className="mt-2">
+                      <Button type="submit">Sign Out</Button>
+                    </div>
                   </div>
                 </form>
               </div>
