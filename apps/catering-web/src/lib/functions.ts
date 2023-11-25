@@ -1,3 +1,8 @@
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { toast } from "sonner"
+
+const supabase = createClientComponentClient()
+
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
 }
@@ -44,4 +49,71 @@ export const getReviewAverage = (recipe: Recipe) => {
 export const getRelatedRecipes = (recipe: Recipe, recipes: Recipe[]) => {
   const relatedRecipes = recipes.filter((r) => r.id !== recipe.id)
   return relatedRecipes
+}
+
+export const uploadImage = async (file: File) => {
+  try {
+    const name = `${file.name}`
+    const userId = await supabase.auth.getUser()
+
+    const secondsInYear = 31536000
+
+    const { data, error } = await supabase.storage
+      .from("users")
+      .upload(`${userId.data.user?.id}/${name}`, file, {
+        upsert: false,
+      })
+
+    if (error) {
+      toast.error("Error uploading image", {
+        description: error.message,
+      })
+      return
+    }
+
+    const { data: urlData } = await supabase.storage
+      .from("users")
+      .createSignedUrl(`${userId.data.user?.id}/${name}`, secondsInYear)
+
+    return urlData?.signedUrl
+  } catch (error) {
+    throw error
+  }
+}
+
+export const updateUser = async (user: User, image: File | null) => {
+  try {
+    let newUser = user
+
+    if (image !== null) {
+      const imageUrl = await uploadImage(image)
+
+      newUser = {
+        ...user,
+        avatar: imageUrl || user.avatar,
+      }
+    }
+
+    const { data, error } = await supabase
+      .from("users")
+      .update([
+        {
+          first_name: newUser.first_name,
+          last_name: newUser.last_name,
+          avatar: newUser.avatar,
+        },
+      ])
+      .eq("id", newUser.id)
+      .single()
+
+    if (error) {
+      throw error
+    }
+
+    if (data) {
+      return data
+    }
+  } catch (error) {
+    throw error
+  }
 }
