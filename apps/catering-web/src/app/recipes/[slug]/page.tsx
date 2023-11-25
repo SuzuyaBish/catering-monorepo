@@ -1,8 +1,14 @@
-"use client"
+"use server"
+
+import { Suspense } from "react"
+import { cookies } from "next/headers"
+import Image from "next/image"
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 
 import RecipeInfo from "@/components/recipe/RecipeDetails"
 import RecipesTabs from "@/components/recipe/RecipesTabs"
 import RelatedRecipes from "@/components/recipe/RelatedRecipes"
+import RelatedRecipesFallback from "@/components/recipe/RelatedFallback"
 
 const product = {
   name: "Application UI Icon Pack",
@@ -20,28 +26,40 @@ const product = {
     "Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles.",
 }
 
-export default function RecipeDetails({
+export default async function RecipeDetails({
   params,
 }: {
   params: { slug: string }
 }) {
+  const cookieStore = cookies()
+  const supabase = createServerComponentClient({ cookies: () => cookieStore })
+  const { data } = await supabase
+    .from("recipes")
+    .select("*, reviews(*, author(*))")
+    .eq("id", params.slug)
+    .single()
+  const recipe = data as Recipe
   return (
     <div className="">
       <main className="mx-auto px-4 pb-24 pt-14 sm:px-6 sm:pb-32 sm:pt-16 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
           <div className="lg:col-span-4 lg:row-end-1">
-            <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
-              <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
+            <div className="aspect-h-3 aspect-w-4 relative overflow-hidden rounded-lg bg-gray-100">
+              <Image
+                src={recipe.image}
+                fill
+                alt=""
                 className="object-cover object-center"
               />
             </div>
           </div>
-          <RecipeInfo />
-          <RecipesTabs />
+          <RecipeInfo {...recipe} />
+          <RecipesTabs {...recipe} />
         </div>
-        <RelatedRecipes />
+        <Suspense fallback={<RelatedRecipesFallback />}>
+          {/* @ts-expect-error Server Component */}
+          <RelatedRecipes />
+        </Suspense>
       </main>
     </div>
   )

@@ -1,66 +1,38 @@
-import { FC } from "react"
+import { cookies } from "next/headers"
+import Image from "next/image"
+import Link from "next/link"
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 
-const relatedProducts = [
-  {
-    id: 1,
-    name: "Fusion",
-    category: "UI Kit",
-    href: "#",
-    price: "$49",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-05-related-product-01.jpg",
-    imageAlt:
-      "Payment application dashboard screenshot with transaction table, financial highlights, and main clients on colorful purple background.",
-  },
-  {
-    id: 1,
-    name: "Fusion",
-    category: "UI Kit",
-    href: "#",
-    price: "$49",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-05-related-product-01.jpg",
-    imageAlt:
-      "Payment application dashboard screenshot with transaction table, financial highlights, and main clients on colorful purple background.",
-  },
-  {
-    id: 1,
-    name: "Fusion",
-    category: "UI Kit",
-    href: "#",
-    price: "$49",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-05-related-product-01.jpg",
-    imageAlt:
-      "Payment application dashboard screenshot with transaction table, financial highlights, and main clients on colorful purple background.",
-  },
-  // More products...
-]
+import { getReviewAverage } from "@/lib/functions"
 
-interface RelatedRecipesProps {}
+export default async function RelatedRecipes() {
+  const cookieStore = cookies()
+  const supabase = createServerComponentClient({ cookies: () => cookieStore })
+  const { data } = await supabase.from("recipes").select("*").limit(4)
+  const recipes = data as Recipe[]
 
-const RelatedRecipes: FC<RelatedRecipesProps> = ({}) => {
   return (
     <div className="mx-auto mt-24 max-w-2xl sm:mt-32 lg:max-w-none">
       <div className="flex items-center justify-between space-x-4">
         <h2 className="text-lg font-medium text-gray-900">
           Customers also viewed
         </h2>
-        <a
-          href="#"
-          className="whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500"
+        <Link
+          href="/recipes"
+          className="text-orangeColor whitespace-nowrap text-sm font-medium"
         >
           View all
           <span aria-hidden="true"> &rarr;</span>
-        </a>
+        </Link>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
-        {relatedProducts.map((product) => (
-          <div key={product.id} className="group relative">
-            <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
-              <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
+        {recipes.map((recipe) => (
+          <div key={recipe.id} className="group relative">
+            <div className="aspect-h-3 aspect-w-4 relative overflow-hidden rounded-lg bg-gray-100">
+              <Image
+                src={recipe.image}
+                alt=""
+                fill
                 className="object-cover object-center"
               />
               <div
@@ -74,19 +46,17 @@ const RelatedRecipes: FC<RelatedRecipesProps> = ({}) => {
             </div>
             <div className="mt-4 flex items-center justify-between space-x-8 text-base font-medium text-gray-900">
               <h3>
-                <a href="#">
+                <Link href={`/recipes/${recipe.id}`}>
                   <span aria-hidden="true" className="absolute inset-0" />
-                  {product.name}
-                </a>
+                  {recipe.title}
+                </Link>
               </h3>
-              <p>{product.price}</p>
+              <p>{getReviewAverage(recipe)}</p>
             </div>
-            <p className="mt-1 text-sm text-gray-500">{product.category}</p>
+            <p className="mt-1 text-sm text-gray-500">{recipe.description}</p>
           </div>
         ))}
       </div>
     </div>
   )
 }
-
-export default RelatedRecipes

@@ -1,8 +1,17 @@
+"use server"
+
+import { cookies } from "next/headers"
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+
+import { products1, products2 } from "@/lib/data"
 import CTA from "@/components/landing/CTA"
 import RecipeList from "@/components/recipe/RecipeList"
-import { products1, products2 } from "@/lib/data"
 
-export default function Example() {
+export default async function Example() {
+  const cookieStore = cookies()
+  const supabase = createServerComponentClient({ cookies: () => cookieStore })
+  const { data } = await supabase.from("recipes").select("*")
+  const recipes = data as Recipe[]
   return (
     <main>
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -26,7 +35,7 @@ export default function Example() {
           <h2 id="products-heading" className="sr-only">
             Products
           </h2>
-          <RecipeList recipes={products1} />
+          <RecipeList recipes={recipes} />
         </section>
         <CTA />
         <section
@@ -37,7 +46,7 @@ export default function Example() {
             More products
           </h2>
 
-          <RecipeList recipes={products2} />
+          <RecipeList recipes={recipes} />
         </section>
       </div>
     </main>

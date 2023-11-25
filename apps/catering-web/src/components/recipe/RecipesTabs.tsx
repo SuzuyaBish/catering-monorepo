@@ -1,6 +1,10 @@
+"use client"
+
 import { FC, Fragment } from "react"
+import Image from "next/image"
 import { Tab } from "@headlessui/react"
 import { StarIcon } from "@heroicons/react/20/solid"
+import { format } from "date-fns"
 
 import { classNames } from "@/lib/functions"
 
@@ -78,9 +82,9 @@ const reviews = {
   ],
 }
 
-interface RecipesTabsProps {}
+interface RecipesTabsProps extends Recipe {}
 
-const RecipesTabs: FC<RecipesTabsProps> = ({}) => {
+const RecipesTabs: FC<RecipesTabsProps> = (props) => {
   return (
     <div className="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
       <Tab.Group as="div">
@@ -90,7 +94,7 @@ const RecipesTabs: FC<RecipesTabsProps> = ({}) => {
               className={({ selected }) =>
                 classNames(
                   selected
-                    ? "border-indigo-600 text-indigo-600"
+                    ? "border-orangeColor text-orangeColor"
                     : "border-transparent text-gray-700 hover:border-gray-300 hover:text-gray-800",
                   "whitespace-nowrap border-b-2 py-6 text-sm font-medium"
                 )
@@ -102,7 +106,7 @@ const RecipesTabs: FC<RecipesTabsProps> = ({}) => {
               className={({ selected }) =>
                 classNames(
                   selected
-                    ? "border-indigo-600 text-indigo-600"
+                    ? "border-orangeColor text-orangeColor"
                     : "border-transparent text-gray-700 hover:border-gray-300 hover:text-gray-800",
                   "whitespace-nowrap border-b-2 py-6 text-sm font-medium"
                 )
@@ -114,7 +118,7 @@ const RecipesTabs: FC<RecipesTabsProps> = ({}) => {
               className={({ selected }) =>
                 classNames(
                   selected
-                    ? "border-indigo-600 text-indigo-600"
+                    ? "border-orangeColor text-orangeColor"
                     : "border-transparent text-gray-700 hover:border-gray-300 hover:text-gray-800",
                   "whitespace-nowrap border-b-2 py-6 text-sm font-medium"
                 )
@@ -125,20 +129,51 @@ const RecipesTabs: FC<RecipesTabsProps> = ({}) => {
           </Tab.List>
         </div>
         <Tab.Panels as={Fragment}>
+          <Tab.Panel className="text-sm text-gray-500">
+            <h3 className="sr-only">Frequently Asked Questions</h3>
+
+            <dl className="mt-10">
+              {props.ingredients.map((ingredient) => (
+                <Fragment key={ingredient}>
+                  <dd className="prose prose-sm mb-2 max-w-none text-gray-500">
+                    <li>{ingredient}</li>
+                  </dd>
+                </Fragment>
+              ))}
+            </dl>
+          </Tab.Panel>
+
+          <Tab.Panel className="pt-10">
+            <h3 className="sr-only">License</h3>
+
+            <dl className="">
+              {props.instructions.map((instruction) => (
+                <Fragment key={instruction}>
+                  <dd className="prose prose-sm mb-2 max-w-none text-gray-500">
+                    <li>{instruction}</li>
+                  </dd>
+                </Fragment>
+              ))}
+            </dl>
+          </Tab.Panel>
+
           <Tab.Panel className="-mb-10">
             <h3 className="sr-only">Customer Reviews</h3>
 
-            {reviews.featured.map((review, reviewIdx) => (
+            {props.reviews.map((review, reviewIdx) => (
               <div
                 key={review.id}
                 className="flex space-x-4 text-sm text-gray-500"
               >
                 <div className="flex-none py-10">
-                  <img
-                    src={review.avatarSrc}
-                    alt=""
-                    className="h-10 w-10 rounded-full bg-gray-100"
-                  />
+                  <div className="relative h-10 w-10">
+                    <Image
+                      src={review.author.avatar}
+                      alt=""
+                      fill
+                      className="h-10 w-10 rounded-full bg-gray-100 object-cover"
+                    />
+                  </div>
                 </div>
                 <div
                   className={classNames(
@@ -146,9 +181,13 @@ const RecipesTabs: FC<RecipesTabsProps> = ({}) => {
                     "flex-1 py-10"
                   )}
                 >
-                  <h3 className="font-medium text-gray-900">{review.author}</h3>
+                  <h3 className="font-medium text-gray-900">
+                    {review.author.first_name} {review.author.last_name}
+                  </h3>
                   <p>
-                    <time dateTime={review.datetime}>{review.date}</time>
+                    <time dateTime={review.created_at}>
+                      {format(new Date(review.created_at), "MMMM dd, yyyy")}
+                    </time>
                   </p>
 
                   <div className="mt-4 flex items-center">
@@ -156,7 +195,7 @@ const RecipesTabs: FC<RecipesTabsProps> = ({}) => {
                       <StarIcon
                         key={rating}
                         className={classNames(
-                          review.rating > rating
+                          Number(review.rating) > rating
                             ? "text-yellow-400"
                             : "text-gray-300",
                           "h-5 w-5 flex-shrink-0"
@@ -167,39 +206,12 @@ const RecipesTabs: FC<RecipesTabsProps> = ({}) => {
                   </div>
                   <p className="sr-only">{review.rating} out of 5 stars</p>
 
-                  <div
-                    className="prose prose-sm mt-4 max-w-none text-gray-500"
-                    dangerouslySetInnerHTML={{ __html: review.content }}
-                  />
+                  <div className="prose prose-sm mt-4 max-w-none text-gray-500">
+                    {review.review}
+                  </div>
                 </div>
               </div>
             ))}
-          </Tab.Panel>
-
-          <Tab.Panel className="text-sm text-gray-500">
-            <h3 className="sr-only">Frequently Asked Questions</h3>
-
-            <dl>
-              {faqs.map((faq) => (
-                <Fragment key={faq.question}>
-                  <dt className="mt-10 font-medium text-gray-900">
-                    {faq.question}
-                  </dt>
-                  <dd className="prose prose-sm mt-2 max-w-none text-gray-500">
-                    <p>{faq.answer}</p>
-                  </dd>
-                </Fragment>
-              ))}
-            </dl>
-          </Tab.Panel>
-
-          <Tab.Panel className="pt-10">
-            <h3 className="sr-only">License</h3>
-
-            <div
-              className="prose prose-sm max-w-none text-gray-500"
-              dangerouslySetInnerHTML={{ __html: license.content }}
-            />
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>

@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { StarIcon } from "@heroicons/react/20/solid"
 
-import { classNames } from "@/lib/functions"
+import { classNames, getReviewAverage } from "@/lib/functions"
 
 const product = {
   name: "Application UI Icon Pack",
@@ -49,15 +49,15 @@ const reviews = {
   ],
 }
 
-interface RecipeInfoProps {}
+interface RecipeInfoProps extends Recipe {}
 
-const RecipeInfo: FC<RecipeInfoProps> = ({}) => {
+const RecipeInfo: FC<RecipeInfoProps> = (props) => {
   return (
     <div className="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:max-w-none">
       <div className="flex flex-col-reverse">
         <div className="mt-4">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-            {product.name}
+            {props.title}
           </h1>
 
           <h2 id="information-heading" className="sr-only">
@@ -72,7 +72,7 @@ const RecipeInfo: FC<RecipeInfoProps> = ({}) => {
               <StarIcon
                 key={rating}
                 className={classNames(
-                  reviews.average > rating
+                  Number(getReviewAverage(props)) > rating
                     ? "text-yellow-400"
                     : "text-gray-300",
                   "h-5 w-5 flex-shrink-0"
@@ -85,18 +85,18 @@ const RecipeInfo: FC<RecipeInfoProps> = ({}) => {
         </div>
       </div>
 
-      <p className="mt-6 text-gray-500">{product.description}</p>
+      <p className="mt-6 text-gray-500">{props.description}</p>
 
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
         <button
           type="button"
-          className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+          className="bg-orangeColor flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium text-white"
         >
           Favorite
         </button>
         <button
           type="button"
-          className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-50 px-8 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+          className="text-orangeColor flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-50 px-8 py-3 text-base font-medium"
         >
           Write Review
         </button>
@@ -106,7 +106,7 @@ const RecipeInfo: FC<RecipeInfoProps> = ({}) => {
         <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
         <div className="prose prose-sm mt-4 text-gray-500">
           <ul role="list">
-            {product.highlights.map((highlight) => (
+            {props.highlights.map((highlight) => (
               <li key={highlight}>{highlight}</li>
             ))}
           </ul>
