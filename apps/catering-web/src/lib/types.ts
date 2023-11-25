@@ -1,11 +1,52 @@
+type Recipe = {
+  id: string
+  title: string
+  description: string
+  created_at: string
+  last_updated: string
+  highlights: string[]
+  ingredients: string[]
+  instructions: string[]
+  image: string
+  reviews: Review[]
+}
+
+type Review = {
+  id: string
+  created_at: string
+  author: User
+  review: string
+  recipe: Recipe
+  rating: string
+}
+
+type User = {
+  id: string
+  user_id: string
+  email: string
+  first_name: string
+  last_name: string
+  avatar: string
+  role: "Authenticated" | "Moderator"
+}
+
 type Blog = {
-  id: string;
-  featureImage: string;
-  date: string;
-  category: string;
-  title: string;
-  content: string;
-  author: string;
-  authorImage: string;
-  authorRole: string;
+  id: string
+  created_at: string
+  last_updated: string
+  title: string 
+  subtitle: string
+  image: string
+  top_content: string
+  break_image: string
+  bottom_content: string
+  author: User
+}
+
+type Testimonial = {
+  id: string
+  created_at: string
+  last_updated: string
+  user: User
+  testimonial: string
 }
