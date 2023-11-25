@@ -117,3 +117,46 @@ export const updateUser = async (user: User, image: File | null) => {
     throw error
   }
 }
+
+export const getRecipesFromFavorites = (favorites: Favorite[]) => {
+  const recipes = favorites.map((favorite) => favorite.recipe)
+  return recipes
+}
+
+export const recipeInFavorites = (recipe: Recipe, favorites: Favorite[]) => {
+  const recipeIds = favorites.map((favorite) => favorite.recipe.id)
+  return recipeIds.includes(recipe.id)
+}
+
+export const fetchUser = async () => {
+  const user = await supabase.auth.getUser()
+
+  const { data } = await supabase
+    .from("users")
+    .select("*, favorites(*, recipe(*))")
+    .eq("user_id", user.data.user?.id)
+    .single()
+
+  return data as User
+}
+
+export const fetchRecipeFromId = async (id: string) => {
+  const user = await supabase.auth.getSession()
+
+  const { data: userData } = await supabase
+    .from("users")
+    .select("*")
+    .eq("user_id", user.data.session?.user.id)
+    .single()
+
+  const { data } = await supabase
+    .from("recipes")
+    .select("*, reviews(*, author(*))")
+    .eq("id", id)
+    .single()
+
+  return {
+    recipe: data as Recipe,
+    user: user,
+  }
+}

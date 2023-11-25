@@ -11,11 +11,11 @@ import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
 
 const secondaryNavigation = [
-  { name: "Account", href: "#", current: true },
-  { name: "Saved Recipes", href: "#", current: false },
+  { name: "Account", href: "/account", current: true },
+  { name: "Saved Recipes", href: "/account/saved-recipes", current: false },
 ]
 
-export default function Example() {
+export default function Account() {
   const supabase = createClientComponentClient()
 
   const [user, setUser] = useState<User>({} as User)

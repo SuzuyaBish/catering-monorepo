@@ -1,17 +1,11 @@
 "use server"
 
-import { cookies } from "next/headers"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
-
-import { products1, products2 } from "@/lib/data"
+import { fetchRecipes } from "@/lib/actions"
 import CTA from "@/components/landing/CTA"
 import RecipeList from "@/components/recipe/RecipeList"
 
 export default async function Example() {
-  const cookieStore = cookies()
-  const supabase = createServerComponentClient({ cookies: () => cookieStore })
-  const { data } = await supabase.from("recipes").select("*")
-  const recipes = data as Recipe[]
+  const recipes = await fetchRecipes()
   return (
     <main>
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -35,7 +29,7 @@ export default async function Example() {
           <h2 id="products-heading" className="sr-only">
             Products
           </h2>
-          <RecipeList recipes={recipes} />
+          <RecipeList recipes={recipes.recipes} user={recipes.user} />
         </section>
         <CTA />
         <section
@@ -46,7 +40,7 @@ export default async function Example() {
             More products
           </h2>
 
-          <RecipeList recipes={recipes} />
+          <RecipeList recipes={recipes.recipes} user={recipes.user} />
         </section>
       </div>
     </main>

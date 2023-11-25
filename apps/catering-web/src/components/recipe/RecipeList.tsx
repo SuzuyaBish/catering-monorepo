@@ -1,14 +1,16 @@
 import { FC } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { StarIcon } from "@heroicons/react/20/solid"
 
-import { canShowRecipe } from "@/lib/functions"
+import { canShowRecipe, recipeInFavorites } from "@/lib/functions"
 
 interface RecipeListProps {
   recipes: Recipe[]
+  user: User
 }
 
-const RecipeList: FC<RecipeListProps> = ({ recipes }) => {
+const RecipeList: FC<RecipeListProps> = ({ recipes, user }) => {
   return (
     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
       {recipes.map((recipe) => {
@@ -27,7 +29,12 @@ const RecipeList: FC<RecipeListProps> = ({ recipes }) => {
                   className="h-full w-full object-cover object-center group-hover:opacity-75"
                 />
               </div>
-              <h3 className="mt-4 text-sm text-gray-700">{recipe.title}</h3>
+              <div className="flex items-center justify-between">
+                <h3 className="mt-4 text-sm text-gray-700">{recipe.title}</h3>
+                {recipeInFavorites(recipe, user.favorites) && (
+                  <StarIcon className="text-orangeColor h-4 w-4" />
+                )}
+              </div>
               <p className="mt-1 text-lg font-medium text-gray-900">
                 {recipe.description}
               </p>
