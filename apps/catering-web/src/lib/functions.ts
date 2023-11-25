@@ -15,6 +15,20 @@ export function canShowBlog(blog: Blog) {
   return true
 }
 
+export function canShowRecipe(recipe: Recipe) {
+  if (!recipe) return false
+  if (!recipe.title) return false
+  if (!recipe.description) return false
+  if (!recipe.ingredients) return false
+  if (!recipe.instructions) return false
+  if (!recipe.highlights) return false
+  if (!recipe.image) return false
+  if (!recipe.created_at) return false
+  if (!recipe.last_updated) return false
+
+  return true
+}
+
 export const getReviewAverage = (recipe: Recipe) => {
   const reviews = recipe.reviews
   const reviewCount = reviews.length
