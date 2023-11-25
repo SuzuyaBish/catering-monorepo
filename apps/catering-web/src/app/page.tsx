@@ -13,7 +13,7 @@ export default function Home() {
       <OurKitchen />
       <CTA />
       <TestimonialsSection />
-      <ContactSection />
+      {/* <ContactSection /> */}
     </>
   )
 }

@@ -18,8 +18,8 @@ export default function CTA() {
             Get in touch today!
           </h2>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link href="#">
-              <OrangeButton text="Book Now" />
+            <Link href="/contact">
+              <OrangeButton text="Contact Us" />
             </Link>
           </div>
         </div>

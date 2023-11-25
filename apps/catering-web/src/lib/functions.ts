@@ -1,6 +1,7 @@
 import { toast } from "sonner"
 
 import { createClient } from "./client"
+import { resend } from "./resend"
 
 const supabase = createClient()
 
@@ -190,7 +191,7 @@ export const writeReview = async (
   author: string,
   review: string,
   rating: number,
-  recipe: Recipe,
+  recipe: Recipe
 ) => {
   const { data, error } = await supabase
     .from("reviews")
