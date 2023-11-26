@@ -63,7 +63,7 @@ export const uploadImage = async (file: File) => {
     const { data, error } = await supabase.storage
       .from("users")
       .upload(`${userId.data.user?.id}/${name}`, file, {
-        upsert: false,
+        upsert: true,
       })
 
     if (error) {
