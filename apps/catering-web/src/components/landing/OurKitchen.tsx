@@ -12,14 +12,13 @@ export default function OurKitchen() {
               Our kitchen
             </h2>
             <p className="mt-6 text-xl leading-8 text-gray-600">
-              Quasi est quaerat. Sit molestiae et. Provident ad dolorem
-              occaecati eos iste. Soluta rerum quidem minus ut molestiae velit
-              error quod. Excepturi quidem expedita molestias quas.
+              At The Cooked Sisters, we&#39;re committed to using only the
+              freshest, highest-quality ingredients, sourced from local and
+              sustainable producers whenever possible.
             </p>
             <p className="mt-6 text-base leading-7 text-gray-600">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat. Quasi aperiam sit non sit neque reprehenderit.
+              From classic comfort food to innovative global cuisine, we offer a
+              wide range of menu options to suit any taste and budget.
             </p>
             <div className="mt-10 flex">
               <Link href="/about">
