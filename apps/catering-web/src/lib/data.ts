@@ -15,6 +15,7 @@ export const featuredTestimonial = {
     handle: "brennagoyette",
     imageUrl:
       "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=1024&h=1024&q=80",
+    logoURL: "https://tailwindui.com/img/logos/savvycal-logo-gray-900.svg",
   },
 }
 
@@ -51,7 +52,7 @@ export const testimonials = [
         body: "The Cooked Sisters brought a perfect blend of warmth and flavour to our family reunion. The dishes were not only mouthwatering but also infused with a home-cooked feeling that resonated with everyone. The personalized service and variety of options made it a reunion to remember. The Cooked Sisters truly felt like an extension of our family.",
         author: {
           name: "John Parsons",
-          handle: "tomcook",
+          handle: "johnparsons",
           imageUrl:
             "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
         },
