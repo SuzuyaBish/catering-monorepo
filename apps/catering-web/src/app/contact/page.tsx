@@ -184,9 +184,15 @@ export default function ContactPage() {
             <figure className="mt-10">
               <blockquote className="text-lg font-semibold leading-8 text-gray-900">
                 <p>
-                  “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-                  expedita voluptas culpa sapiente alias molestiae. Numquam
-                  corrupti in laborum sed rerum et corporis.”
+                  “The Cooked Sisters turned our anniversary dinner into a
+                  romantic experience. From the moment we contacted them, the
+                  team displayed exceptional professionalism and a genuine
+                  passion for their craft. The menu they curated for our special
+                  evening was nothing short of extraordinary. Each dish was a
+                  journey through flavors, and the impeccable service added an
+                  extra layer of sophistication. The Cooked Sisters made our
+                  anniversary truly memorable, and we look forward to savoring
+                  their culinary delights in the future.”
                 </p>
               </blockquote>
               <figcaption className="mt-10 flex gap-x-6">

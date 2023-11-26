@@ -12,7 +12,7 @@ export default function Home() {
       <TrustSection />
       <OurKitchen />
       <CTA />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       {/* <ContactSection /> */}
     </>
   )
