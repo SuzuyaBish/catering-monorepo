@@ -111,31 +111,30 @@ pnpm turbo dev --filter catering-cms
 
 ## Catering Mobile Install & Run Instructions
 
-These instructions assume you are using VSCode.
+> Catering mobile has moved to [this repo](https://github.com/SuzuyaBish/catering-expo)
 
-1. Clone the repo (if you haven't already):
-
-   ```bash
-   git clone https://github.com/SuzuyaBish/catering-monorepo.git
-   ```
-
-2. Open the project in VSCode:
+1. Clone the repo:
 
    ```bash
-   cd catering-monorepo/apps/catering-mobile && code .
+   git clone https://github.com/SuzuyaBish/catering-expo.git
    ```
 
-3. Select the device you want to run the application on:
+2. Navigate into the application and install dependencies:
 
    ```bash
-   Cntrl + Shift + P
-   Flutter: Select Device
+   cd catering-expo && yarn
    ```
 
-4. Run the application:
+3. Run the application:
 
    ```bash
-   F5
+   yarn start
    ```
 
-The application will now start on the chosen device.
+4. Open the application:
+
+   ```bash
+   Press "a" when the application has started to open on an available Android emulator
+   or press i to run on an available ios simulator
+   or scan the qr code with the downloaded Expo Go app and the application will open on your device.
+   ```
