@@ -6,15 +6,15 @@ import {
   SunIcon,
   UserGroupIcon,
 } from "@heroicons/react/20/solid"
+import { StarIcon } from "@radix-ui/react-icons"
 
 export const featuredTestimonial = {
-  body: "Integer id nunc sit semper purus. Bibendum at lacus ut arcu blandit montes vitae auctor libero. Hac condimentum dignissim nibh vulputate ut nunc. Amet nibh orci mi venenatis blandit vel et proin. Non hendrerit in vel ac diam.",
+  body: "The Cooked Sisters made my event an absolute delight! Their attention to detail, from the presentation to the exquisite flavors, was unparalleled. The guests couldn't stop raving about the delectable dishes. Thank you, Cooked Sisters, for turning my gathering into a culinary masterpiece!",
   author: {
     name: "Brenna Goyette",
     handle: "brennagoyette",
     imageUrl:
       "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=1024&h=1024&q=80",
-    logoUrl: "https://tailwindui.com/img/logos/savvycal-logo-gray-900.svg",
   },
 }
 
@@ -22,7 +22,7 @@ export const testimonials = [
   [
     [
       {
-        body: "Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.",
+        body: "We chose The Cooked Sisters for our wedding reception, and it was a decision we'll never regret. The menu was diverse and tailored to our preferences, and the service was impeccable. Every dish was a work of art, leaving our guests impressed and satisfied. The Cooked Sisters turned our special day into a gastronomic celebration!",
         author: {
           name: "Leslie Alexander",
           handle: "lesliealexander",
@@ -34,7 +34,7 @@ export const testimonials = [
     ],
     [
       {
-        body: "Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsam ut officia rem nulla blanditiis.",
+        body: "Working with The Cooked Sisters for our corporate event was a breeze. Their professional team took care of every detail, ensuring a seamless experience. The food was not only delicious but also beautifully presented. The Cooked Sisters elevated our event and left a lasting impression on our clients and colleagues.",
         author: {
           name: "Lindsay Walton",
           handle: "lindsaywalton",
@@ -48,9 +48,9 @@ export const testimonials = [
   [
     [
       {
-        body: "Voluptas quos itaque ipsam in voluptatem est. Iste eos blanditiis repudiandae. Earum deserunt enim molestiae ipsum perferendis recusandae saepe corrupti.",
+        body: "The Cooked Sisters brought a perfect blend of warmth and flavour to our family reunion. The dishes were not only mouthwatering but also infused with a home-cooked feeling that resonated with everyone. The personalized service and variety of options made it a reunion to remember. The Cooked Sisters truly felt like an extension of our family.",
         author: {
-          name: "Tom Cook",
+          name: "John Parsons",
           handle: "tomcook",
           imageUrl:
             "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
@@ -60,7 +60,7 @@ export const testimonials = [
     ],
     [
       {
-        body: "Molestias ea earum quos nostrum doloremque sed. Quaerat quasi aut velit incidunt excepturi rerum voluptatem minus harum.",
+        body: "Hats off to The Cooked Sisters for making my birthday celebration unforgettable! The menu was creative, and the execution flawless. They catered to every dietary preference with ease, ensuring all my guests were happy. The Cooked Sisters transformed a simple gathering into a culinary experience that will be talked about for years to come!",
         author: {
           name: "Leonard Krasner",
           handle: "leonardkrasner",
@@ -75,39 +75,39 @@ export const testimonials = [
 
 export const values = [
   {
-    name: "Be world-class.",
+    name: "Passion for Culinary Excellence",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.",
-    icon: RocketLaunchIcon,
+      "The Cooked Sisters are dedicated to delivering culinary creations of the highest quality. ",
+    icon: StarIcon,
   },
   {
     name: "Take responsibility.",
     description:
-      "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
+      "The Cooked Sisters take pride and responsibility in each dish that is presented to a customer.",
     icon: HandRaisedIcon,
   },
   {
-    name: "Be supportive.",
+    name: "Cater to the community.",
     description:
-      "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus voluptas blanditiis et.",
+      "The Cooked Sisters believe in helping others and are always supporting their surrounding communities where they can.",
     icon: UserGroupIcon,
   },
   {
     name: "Always learning.",
     description:
-      "Iure sed ab. Aperiam optio placeat dolor facere. Officiis pariatur eveniet atque et dolor.",
+      "The Cooked Sisters are constantly learning and coming up with new creative methods of cooking.",
     icon: AcademicCapIcon,
   },
   {
-    name: "Share everything you know.",
+    name: "Sharing our recipes.",
     description:
-      "Laudantium tempora sint ut consectetur ratione. Ut illum ut rem numquam fuga delectus.",
+      "The Cooked Sisters believe that recipes should be shared with their customers.",
     icon: SparklesIcon,
   },
   {
-    name: "Enjoy downtime.",
+    name: "Enjoy your event.",
     description:
-      "Culpa dolorem voluptatem velit autem rerum qui et corrupti. Quibusdam quo placeat.",
+      "The Cooked Sisters beleive that the customer should enjoy their events and they will take care of the food.",
     icon: SunIcon,
   },
 ]
