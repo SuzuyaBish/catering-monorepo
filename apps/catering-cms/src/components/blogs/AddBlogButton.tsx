@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 
+import { createBlog } from "@/lib/functions/blog-functions"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -16,13 +18,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 import { Icons } from "../Icons"
-import { createBlog } from "@/lib/functions/blog-functions"
 
 export function AddBlogButton() {
   const router = useRouter()
   const [title, setTitle] = useState("")
   const [image, setImage] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
+  const supabase = createClientComponentClient()
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

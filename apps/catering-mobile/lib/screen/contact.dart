@@ -1,9 +1,11 @@
-import 'package:catering_mobile/screen/recipe.dart';
-import 'package:catering_mobile/screen/home.dart';
 import 'package:catering_mobile/screen/blog.dart';
+import 'package:catering_mobile/screen/home.dart';
+import 'package:catering_mobile/screen/recipe.dart';
 import 'package:flutter/material.dart';
 
 class contact extends StatefulWidget {
+  const contact({super.key});
+
   @override
   _ContactState createState() => _ContactState();
 }
@@ -22,34 +24,34 @@ class _ContactState extends State<contact> {
           style: TextStyle(color: Colors.black, fontSize: 25),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 55, 175, 166),
+        backgroundColor: const Color.fromARGB(255, 55, 175, 166),
       ),
       body: Container(
           child: Column(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 16),
+            margin: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(children: <Widget>[
               TextField(
-                decoration: InputDecoration(hintText: "Name and Surname"),
+                decoration: const InputDecoration(hintText: "Name and Surname"),
                 onChanged: (val) {
                   NameSurname = val;
                 },
               ),
               TextField(
-                decoration: InputDecoration(hintText: "Email"),
+                decoration: const InputDecoration(hintText: "Email"),
                 onChanged: (val) {
                   email = val;
                 },
               ),
               TextField(
-                decoration: InputDecoration(hintText: "Number"),
+                decoration: const InputDecoration(hintText: "Number"),
                 onChanged: (val) {
                   number = val;
                 },
               ),
               TextField(
-                decoration: InputDecoration(hintText: "Description"),
+                decoration: const InputDecoration(hintText: "Description"),
                 onChanged: (val) {
                   description = val;
                 },
@@ -72,8 +74,8 @@ class _ContactState extends State<contact> {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HomePage()));
                 },
                 icon: const Icon(
                   Icons.home_outlined,
@@ -81,8 +83,8 @@ class _ContactState extends State<contact> {
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => recipe()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const RecipePage()));
                 },
                 icon: const Icon(
                   Icons.fastfood_outlined,
@@ -90,8 +92,8 @@ class _ContactState extends State<contact> {
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => blog()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const BlogPage()));
                 },
                 icon: const Icon(
                   Icons.message,
@@ -99,8 +101,8 @@ class _ContactState extends State<contact> {
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => contact()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const contact()));
                 },
                 icon: const Icon(
                   Icons.contact_phone,

@@ -7,7 +7,15 @@ const supabase = createClientComponentClient()
 
 export const createBlog = async (title: string, image: File) => {
   try {
+    const user = await supabase.auth.getUser()
+
     const imageUrl = await uploadImage(image, "blogs")
+
+    const { data: userData, error: userError } = await supabase
+      .from("users")
+      .select("*")
+      .eq("user_id", user.data.user?.id)
+      .single()
 
     const { data, error } = await supabase
       .from("blogs")
@@ -15,7 +23,7 @@ export const createBlog = async (title: string, image: File) => {
         {
           title,
           image: imageUrl,
-          author: 1,
+          author: userData?.id,
         },
       ])
       .select("*")

@@ -1,16 +1,18 @@
-import 'package:catering_mobile/screen/recipe.dart';
-import 'package:catering_mobile/screen/home.dart';
 import 'package:catering_mobile/screen/contact.dart';
-import 'package:catering_mobile/screen/square.dart';
 import 'package:catering_mobile/screen/create_blog.dart';
+import 'package:catering_mobile/screen/home.dart';
+import 'package:catering_mobile/screen/recipe.dart';
+import 'package:catering_mobile/screen/square.dart';
 import 'package:flutter/material.dart';
 
-class blog extends StatefulWidget {
+class BlogPage extends StatefulWidget {
+  const BlogPage({super.key});
+
   @override
   _blog createState() => _blog();
 }
 
-class _blog extends State<blog> {
+class _blog extends State<BlogPage> {
   late final PageController pageController;
   final List _posts = [
     'post 1',
@@ -31,10 +33,10 @@ class _blog extends State<blog> {
           style: TextStyle(color: Colors.black, fontSize: 25),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 55, 175, 166),
+        backgroundColor: const Color.fromARGB(255, 55, 175, 166),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.add,
               color: Colors.black,
             ),
@@ -68,8 +70,8 @@ class _blog extends State<blog> {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HomePage()));
                 },
                 icon: const Icon(
                   Icons.home_outlined,
@@ -77,8 +79,8 @@ class _blog extends State<blog> {
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => recipe()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const RecipePage()));
                 },
                 icon: const Icon(
                   Icons.fastfood_outlined,
@@ -86,8 +88,8 @@ class _blog extends State<blog> {
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => blog()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const BlogPage()));
                 },
                 icon: const Icon(
                   Icons.message,
@@ -95,8 +97,8 @@ class _blog extends State<blog> {
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => contact()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const contact()));
                 },
                 icon: const Icon(
                   Icons.contact_phone,

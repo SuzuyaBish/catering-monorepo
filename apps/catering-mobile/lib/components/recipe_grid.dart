@@ -1,114 +1,13 @@
-import 'package:catering_mobile/screen/blog.dart';
-import 'package:catering_mobile/screen/contact.dart';
-import 'package:catering_mobile/screen/create_recipe.dart';
-import 'package:catering_mobile/screen/home.dart';
 import 'package:flutter/material.dart';
 
-class RecipePage extends StatefulWidget {
-  const RecipePage({super.key});
+class RecipeGrid extends StatefulWidget {
+  const RecipeGrid({Key? key}) : super(key: key);
 
   @override
-  _Recipe createState() => _Recipe();
+  State<RecipeGrid> createState() => _RecipeGridState();
 }
 
-class _Recipe extends State<RecipePage> {
-  bool showBtmAppBr = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Recipes",
-          style: TextStyle(color: Colors.black, fontSize: 25),
-        ),
-        centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 55, 175, 166),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.add,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => createRecipe())); // do something
-            },
-          )
-        ],
-      ),
-      body: const SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(24.0),
-          child: GridB(),
-        ),
-      ),
-      bottomNavigationBar: AnimatedContainer(
-        duration: const Duration(
-          milliseconds: 800,
-        ),
-        curve: Curves.easeInOutSine,
-        height: showBtmAppBr ? 70 : 0,
-        child: BottomAppBar(
-          notchMargin: 8.0,
-          shape: const CircularNotchedRectangle(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const HomePage()));
-                },
-                icon: const Icon(
-                  Icons.home_outlined,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const RecipePage()));
-                },
-                icon: const Icon(
-                  Icons.fastfood_outlined,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const BlogPage()));
-                },
-                icon: const Icon(
-                  Icons.message,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const contact()));
-                },
-                icon: const Icon(
-                  Icons.contact_phone,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class GridB extends StatefulWidget {
-  const GridB({Key? key}) : super(key: key);
-
-  @override
-  State<GridB> createState() => _GridBState();
-}
-
-class _GridBState extends State<GridB> {
+class _RecipeGridState extends State<RecipeGrid> {
   final List<Map<String, dynamic>> gridMap = [
     {
       "title": "Salmon Tacos",
@@ -159,6 +58,24 @@ class _GridBState extends State<GridB> {
           "https://theforkedspoon.com/wp-content/uploads/2019/06/Greek-Chicken-Marinade-7.jpg",
     },
   ];
+  void _showDialogRecipe() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Blog"),
+            content: const Text("Content from Blog"),
+            actions: [
+              MaterialButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("Close"),
+              )
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
