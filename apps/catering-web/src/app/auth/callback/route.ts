@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code)
     const next = requestUrl.searchParams.get("next")
 
-    return NextResponse.redirect(next!)
+    return NextResponse.redirect(new URL(next || "/", requestUrl))
   }
 
   // URL to redirect to after sign in process completes

@@ -12,6 +12,7 @@ import { createClient } from "@/lib/client"
 
 export default function PasswordRecoveryPage() {
   const supabase = createClient()
+  const currentUrl = window.location.origin
 
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
@@ -24,7 +25,7 @@ export default function PasswordRecoveryPage() {
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo:
-          "http://localhost:3000/auth/callback?next=/password-recovery/reset-password",
+          `${currentUrl}/auth/callback?next=/password-recovery/reset-password`,
       })
 
       if (error) {
