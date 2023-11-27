@@ -1,18 +1,17 @@
 "use client"
 
 import { useState } from "react"
-import { toast } from "sonner"
 import Image from "next/image"
+import { toast } from "sonner"
 
+import { createClient } from "@/lib/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
-import { createClient } from "@/lib/client"
 
 export default function PasswordRecoveryPage() {
   const supabase = createClient()
-  const currentUrl = window.location.origin
 
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
@@ -21,11 +20,11 @@ export default function PasswordRecoveryPage() {
     e.preventDefault()
 
     setLoading(true)
+    const currentUrl = window.location.origin
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo:
-          `${currentUrl}/auth/callback?next=/password-recovery/reset-password`,
+        redirectTo: `${currentUrl}/auth/callback?next=/password-recovery/reset-password`,
       })
 
       if (error) {
