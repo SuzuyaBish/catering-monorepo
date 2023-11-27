@@ -93,7 +93,21 @@ If you do not have the Flutter SDK follow the instructions for your operating sy
    cd catering-monorepo && pnpm install
    ```
 
-3. Run the catering-web && catering-cms applications:
+3. In order for the application to not error please do the following:
+
+   ```bash
+   create a new file called .env.local in the root directory of both the web and cms and paste the following:
+
+
+   NEXT_PUBLIC_SUPABASE_URL=https://rzqslwrkxnifdgwlulxv.supabase.co 
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6cXNsd3JreG5pZmRnd2x1bHh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA1NjEwOTgsImV4cCI6MjAxNjEzNzA5OH0.s8BpHTLZtkRF-PqNLydv4ISON-B2eUMs2QHeRih2SK0 
+
+   NEXT_PUBLIC_RESEND_API_KEY=re_QEjoJzJa_J3epLnZJnBDApDVchjuimywK
+   ```
+
+   These are the credentials in order to connect to the database and the email api.
+
+4. Run the catering-web && catering-cms applications:
 
    ```bash
    pnpm turbo dev
