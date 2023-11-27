@@ -14,6 +14,9 @@ export async function GET(request: Request) {
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
     await supabase.auth.exchangeCodeForSession(code)
+    const next = requestUrl.searchParams.get("next")
+
+    return NextResponse.redirect(next!)
   }
 
   // URL to redirect to after sign in process completes
